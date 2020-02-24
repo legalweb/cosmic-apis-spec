@@ -1,0 +1,27 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "internalwkt_address.go",
+        "internalwkt_pagination_request.go",
+        "internalwkt_pagination_response.go",
+        "v1_add_introducer_owner_request.go",
+        "v1_add_introducer_owner_response.go",
+        "v1_create_introducer_request.go",
+        "v1_create_introducer_response.go",
+        "v1_get_introducer_response.go",
+        "v1_get_introducers_response.go",
+        "v1_introducer.go",
+        "v1_update_introducer_address_request.go",
+        "v1_update_introducer_address_response.go",
+    ],
+    importpath = "lwebco.de/cosmic-apis-spec/introducers/models",
+    visibility = ["//visibility:public"],
+    deps = [
+        "@com_github_go_openapi_errors//:go_default_library",
+        "@com_github_go_openapi_strfmt//:go_default_library",
+        "@com_github_go_openapi_swag//:go_default_library",
+        "@com_github_go_openapi_validate//:go_default_library",
+    ],
+)

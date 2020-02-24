@@ -1,0 +1,431 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Introducers API",
+    "version": "1.0"
+  },
+  "host": "introducers.cosmicapis.com",
+  "schemes": [
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/v1/introducers": {
+      "get": {
+        "summary": "GetIntroducers will perform a search for introducers with the given query params (see GetIntroducersRequest)",
+        "operationId": "GetIntroducers",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetIntroducersResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "introducer_id",
+            "description": "You can specify one or many introducer IDs to obtain.",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "name",
+            "description": "You can search by name, this is search will see if the provided\nstring can be found in any introducers name and returns the ones\nthat matched, for example \"mic\" would still return \"Cosmic\".",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "account_id",
+            "description": "You can specify one or many account IDs where the account ID must\nbe within the owners of the introducer to match.",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "pagination.page",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "pagination.limit",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "Introducers"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ]
+      },
+      "post": {
+        "operationId": "CreateIntroducer",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1CreateIntroducerResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1CreateIntroducerRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Introducers"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ]
+      }
+    },
+    "/v1/introducers/{introducer_id}": {
+      "get": {
+        "operationId": "GetIntroducer",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetIntroducerResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "introducer_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Introducers"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ]
+      }
+    },
+    "/v1/introducers/{introducer_id}/owners": {
+      "post": {
+        "operationId": "AddIntroducerOwner",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1AddIntroducerOwnerResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "introducer_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1AddIntroducerOwnerRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Introducers"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ]
+      }
+    },
+    "/v1/introducers/{introducer_id}/owners/{account_id}": {
+      "delete": {
+        "operationId": "RemoveIntroducerOwner",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "introducer_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "account_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Introducers"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ]
+      }
+    },
+    "/v1/introducers/{introducer_id}/update_address": {
+      "post": {
+        "operationId": "UpdateIntroducerAddress",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1UpdateIntroducerAddressResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "introducer_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1UpdateIntroducerAddressRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Introducers"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "internalwktAddress": {
+      "type": "object",
+      "properties": {
+        "building": {
+          "type": "string",
+          "description": "Optional."
+        },
+        "street_name": {
+          "type": "string",
+          "description": "Optional."
+        },
+        "town": {
+          "type": "string",
+          "description": "Optional."
+        },
+        "city": {
+          "type": "string",
+          "description": "Optional."
+        },
+        "county": {
+          "type": "string",
+          "description": "Optional."
+        },
+        "postal_code": {
+          "type": "string",
+          "description": "Optional."
+        },
+        "region": {
+          "type": "string",
+          "description": "Required. ISO-3166 three letter code of the country/region of the address.\nThis is never inferred and it is up to the user to ensure the value is\ncorrect. See https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes\nfor details.\nExample: \"GBR\" for United Kingdom."
+        }
+      }
+    },
+    "internalwktPaginationRequest": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "limit": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
+    "internalwktPaginationResponse": {
+      "type": "object",
+      "properties": {
+        "currentPage": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "limit": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "totalPages": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
+    "v1AddIntroducerOwnerRequest": {
+      "type": "object",
+      "properties": {
+        "introducer_id": {
+          "type": "string"
+        },
+        "account_id": {
+          "type": "string"
+        }
+      }
+    },
+    "v1AddIntroducerOwnerResponse": {
+      "type": "object"
+    },
+    "v1CreateIntroducerRequest": {
+      "type": "object",
+      "properties": {
+        "introducer_id": {
+          "type": "string"
+        },
+        "organisation_id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "v1CreateIntroducerResponse": {
+      "type": "object"
+    },
+    "v1GetIntroducerResponse": {
+      "type": "object",
+      "properties": {
+        "introducer": {
+          "$ref": "#/definitions/v1Introducer"
+        }
+      }
+    },
+    "v1GetIntroducersResponse": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1Introducer"
+          }
+        },
+        "pagination": {
+          "$ref": "#/definitions/internalwktPaginationResponse"
+        }
+      }
+    },
+    "v1Introducer": {
+      "type": "object",
+      "properties": {
+        "introducer_id": {
+          "type": "string",
+          "description": "The introducer ID is expected to be a UUID."
+        },
+        "organisation_id": {
+          "type": "string"
+        },
+        "created": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "name": {
+          "type": "string"
+        },
+        "address": {
+          "$ref": "#/definitions/internalwktAddress"
+        },
+        "owners": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "description": "Describes an introducer that provides leads to an organisation.\nEach introducer can only belong to one organisation but have many\nowners, owners should be accounts with the introducer role for\nthe given organisation."
+    },
+    "v1UpdateIntroducerAddressRequest": {
+      "type": "object",
+      "properties": {
+        "introducer_id": {
+          "type": "string"
+        },
+        "new_address": {
+          "$ref": "#/definitions/internalwktAddress"
+        }
+      }
+    },
+    "v1UpdateIntroducerAddressResponse": {
+      "type": "object"
+    }
+  },
+  "securityDefinitions": {
+    "ApiKeyAuth": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header"
+    }
+  },
+  "security": [
+    {
+      "ApiKeyAuth": [],
+      "BasicAuth": []
+    }
+  ]
+}

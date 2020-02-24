@@ -1,0 +1,89 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Domain Config API",
+    "version": "1.0"
+  },
+  "host": "domainconfig.cosmicapis.com",
+  "schemes": [
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/v1/resolve/{domain_name}": {
+      "get": {
+        "summary": "Resolve a domain configuration using the domain name.\nThe sender would need to provide the FQDN.",
+        "operationId": "Resolve",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ResolveResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "domain_name",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "DomainConfig"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "v1DomainConfiguration": {
+      "type": "object",
+      "properties": {
+        "domain_name": {
+          "type": "string",
+          "description": "The domain name which the configuration relates too."
+        },
+        "organisation_id": {
+          "type": "string",
+          "description": "The organisation ID related to the domain configuration.\nThis should be used on subsequent requests to authentication and any\nother service that requires the organisation id."
+        },
+        "label": {
+          "type": "string",
+          "description": "The label is the organisation customer friendly name for example\n\"Commercial Finance Group\"."
+        },
+        "logo_uri": {
+          "type": "string",
+          "description": "A URI to the logo the customers will see for the organisation."
+        },
+        "support_telephone": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "A telephone number that can be used for customers to get support."
+        },
+        "support_email": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "An e-mail address that can be used for customers to get support."
+        }
+      }
+    },
+    "v1ResolveResponse": {
+      "type": "object",
+      "properties": {
+        "config": {
+          "$ref": "#/definitions/v1DomainConfiguration"
+        }
+      }
+    }
+  }
+}

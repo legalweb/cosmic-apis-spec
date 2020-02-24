@@ -1,0 +1,22 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_binary", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = ["main.go"],
+    importpath = "lwebco.de/cosmic-apis-spec/examples/get-introducer-details",
+    visibility = ["//visibility:private"],
+    deps = [
+        "//identity/client:go_default_library",
+        "//identity/client/identities:go_default_library",
+        "//identity/models:go_default_library",
+        "//introducers/client:go_default_library",
+        "//introducers/client/introducers:go_default_library",
+        "//pkg/auth:go_default_library",
+    ],
+)
+
+go_binary(
+    name = "get-introducer-details",
+    embed = [":go_default_library"],
+    visibility = ["//visibility:public"],
+)

@@ -1,0 +1,1041 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Identities API",
+    "version": "1.0"
+  },
+  "host": "identities.cosmicapis.com",
+  "schemes": [
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/v1/accounts": {
+      "get": {
+        "operationId": "QueryAccounts",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1QueryAccountsResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "email_address",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "pagination.page",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "pagination.limit",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "Identities"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ]
+      },
+      "post": {
+        "operationId": "CreateAccount",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1CreateAccountResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1CreateAccountRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Identities"
+        ]
+      }
+    },
+    "/v1/accounts/{account_id}": {
+      "get": {
+        "operationId": "GetAccount",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetAccountResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Identities"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ]
+      }
+    },
+    "/v1/accounts/{account_id}/change_password": {
+      "post": {
+        "operationId": "UpdateAccountPassword",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1UpdateAccountPasswordResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1UpdateAccountPasswordRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Identities"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ]
+      }
+    },
+    "/v1/accounts/{account_id}/update_details": {
+      "post": {
+        "operationId": "UpdateAccountDetails",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1UpdateAccountDetailsResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1UpdateAccountDetailsRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Identities"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ]
+      }
+    },
+    "/v1/login": {
+      "post": {
+        "operationId": "Login",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1LoginResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1LoginRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Identities"
+        ]
+      }
+    },
+    "/v1/organisations": {
+      "get": {
+        "operationId": "QueryOrganisations",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1QueryOrganisationsResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "organisation_id",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "display_name",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "email_address",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "pagination.page",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "pagination.limit",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "Identities"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ]
+      },
+      "post": {
+        "operationId": "CreateOrganisation",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1CreateOrganisationResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1CreateOrganisationRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Identities"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ]
+      }
+    },
+    "/v1/organisations/{organisation_id}": {
+      "get": {
+        "operationId": "GetOrganisation",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetOrganisationResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "organisation_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Identities"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ]
+      },
+      "post": {
+        "operationId": "UpdateOrganisation",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1UpdateOrganisationResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "organisation_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1UpdateOrganisationRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Identities"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ]
+      }
+    },
+    "/v1/organisations/{organisation_id}/members": {
+      "post": {
+        "operationId": "AddOrganisationMember",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1AddOrganisationMemberResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "organisation_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1AddOrganisationMemberRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Identities"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ]
+      }
+    },
+    "/v1/organisations/{organisation_id}/members/{account_id}": {
+      "delete": {
+        "operationId": "RemoveOrganisationMember",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "organisation_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "account_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Identities"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ]
+      }
+    },
+    "/v1/organisations/{organisation_id}/status": {
+      "post": {
+        "operationId": "SetOrganisationStatus",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "organisation_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1SetOrganisationStatusRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Identities"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ]
+      }
+    },
+    "/v1/orgmemberships": {
+      "get": {
+        "operationId": "QueryAccountMemberships",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1QueryAccountMembershipsResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Identities"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ]
+      }
+    },
+    "/v1/token/check": {
+      "post": {
+        "operationId": "TokenCheck",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1TokenCheckResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1TokenCheckRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Identities"
+        ]
+      }
+    },
+    "/v1/token/revoke": {
+      "post": {
+        "operationId": "TokenRevoke",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1TokenRevokeResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1TokenRevokeRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Identities"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "QueryAccountMembershipsResponseMap": {
+      "type": "object",
+      "properties": {
+        "organisation_id": {
+          "type": "string"
+        },
+        "role": {
+          "$ref": "#/definitions/v1MemberRole"
+        }
+      }
+    },
+    "internalwktAddress": {
+      "type": "object",
+      "properties": {
+        "building": {
+          "type": "string",
+          "description": "Optional."
+        },
+        "street_name": {
+          "type": "string",
+          "description": "Optional."
+        },
+        "town": {
+          "type": "string",
+          "description": "Optional."
+        },
+        "city": {
+          "type": "string",
+          "description": "Optional."
+        },
+        "county": {
+          "type": "string",
+          "description": "Optional."
+        },
+        "postal_code": {
+          "type": "string",
+          "description": "Optional."
+        },
+        "region": {
+          "type": "string",
+          "description": "Required. ISO-3166 three letter code of the country/region of the address.\nThis is never inferred and it is up to the user to ensure the value is\ncorrect. See https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes\nfor details.\nExample: \"GBR\" for United Kingdom."
+        }
+      }
+    },
+    "internalwktPaginationRequest": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "limit": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
+    "internalwktPaginationResponse": {
+      "type": "object",
+      "properties": {
+        "currentPage": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "limit": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "totalPages": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
+    "v1Account": {
+      "type": "object",
+      "properties": {
+        "account_id": {
+          "type": "string"
+        },
+        "email_address": {
+          "type": "string"
+        },
+        "active": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "created": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "forename": {
+          "type": "string"
+        },
+        "surname": {
+          "type": "string"
+        },
+        "telephone": {
+          "type": "string"
+        }
+      }
+    },
+    "v1AddOrganisationMemberRequest": {
+      "type": "object",
+      "properties": {
+        "organisation_id": {
+          "type": "string"
+        },
+        "account_id": {
+          "type": "string"
+        },
+        "role": {
+          "$ref": "#/definitions/v1MemberRole"
+        }
+      }
+    },
+    "v1AddOrganisationMemberResponse": {
+      "type": "object"
+    },
+    "v1CreateAccountRequest": {
+      "type": "object",
+      "properties": {
+        "account_id": {
+          "type": "string"
+        },
+        "email_address": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "forename": {
+          "type": "string"
+        },
+        "surname": {
+          "type": "string"
+        },
+        "telephone": {
+          "type": "string"
+        }
+      }
+    },
+    "v1CreateAccountResponse": {
+      "type": "object"
+    },
+    "v1CreateOrganisationRequest": {
+      "type": "object",
+      "properties": {
+        "organisation_id": {
+          "type": "string"
+        },
+        "administrator_id": {
+          "type": "string"
+        },
+        "display_name": {
+          "type": "string"
+        },
+        "telephone_number": {
+          "type": "string",
+          "title": "Contact details"
+        },
+        "website": {
+          "type": "string"
+        },
+        "email_address": {
+          "type": "string"
+        },
+        "address": {
+          "$ref": "#/definitions/internalwktAddress"
+        }
+      }
+    },
+    "v1CreateOrganisationResponse": {
+      "type": "object"
+    },
+    "v1GetAccountResponse": {
+      "type": "object",
+      "properties": {
+        "account": {
+          "$ref": "#/definitions/v1Account"
+        }
+      }
+    },
+    "v1GetAccountWithCredentialsResponse": {
+      "type": "object",
+      "properties": {
+        "account": {
+          "$ref": "#/definitions/v1Account"
+        }
+      }
+    },
+    "v1GetOrganisationResponse": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "$ref": "#/definitions/v1Organisation"
+        }
+      }
+    },
+    "v1LoginRequest": {
+      "type": "object",
+      "properties": {
+        "email_address": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "organisation_id": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "v1LoginResponse": {
+      "type": "object",
+      "properties": {
+        "token": {
+          "type": "string"
+        },
+        "account_id": {
+          "type": "string"
+        },
+        "email_address": {
+          "type": "string"
+        },
+        "organisations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1LoginResponseOrganisationAccess"
+          }
+        }
+      }
+    },
+    "v1LoginResponseOrganisationAccess": {
+      "type": "object",
+      "properties": {
+        "organisation_id": {
+          "type": "string"
+        },
+        "role": {
+          "type": "string"
+        }
+      }
+    },
+    "v1MemberRole": {
+      "type": "string",
+      "enum": [
+        "administrator",
+        "offer",
+        "broker",
+        "introducer",
+        "customer",
+        "lender",
+        "service"
+      ],
+      "default": "administrator"
+    },
+    "v1Organisation": {
+      "type": "object",
+      "properties": {
+        "organisation_id": {
+          "type": "string"
+        },
+        "display_name": {
+          "type": "string"
+        },
+        "telephone_number": {
+          "type": "string"
+        },
+        "website": {
+          "type": "string"
+        },
+        "email_address": {
+          "type": "string"
+        },
+        "address": {
+          "$ref": "#/definitions/internalwktAddress"
+        },
+        "status": {
+          "$ref": "#/definitions/v1OrganisationStatus"
+        },
+        "created": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "v1OrganisationStatus": {
+      "type": "string",
+      "enum": [
+        "active",
+        "inactive"
+      ],
+      "default": "active"
+    },
+    "v1QueryAccountMembershipsResponse": {
+      "type": "object",
+      "properties": {
+        "results": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/QueryAccountMembershipsResponseMap"
+          }
+        }
+      }
+    },
+    "v1QueryAccountsResponse": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1Account"
+          }
+        },
+        "pagination": {
+          "$ref": "#/definitions/internalwktPaginationResponse"
+        }
+      }
+    },
+    "v1QueryOrganisationsResponse": {
+      "type": "object",
+      "properties": {
+        "results": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1Organisation"
+          }
+        },
+        "pagination": {
+          "$ref": "#/definitions/internalwktPaginationResponse"
+        }
+      }
+    },
+    "v1SetOrganisationStatusRequest": {
+      "type": "object",
+      "properties": {
+        "organisation_id": {
+          "type": "string"
+        },
+        "new_status": {
+          "$ref": "#/definitions/v1OrganisationStatus"
+        }
+      }
+    },
+    "v1TokenCheckRequest": {
+      "type": "object",
+      "properties": {
+        "token": {
+          "type": "string"
+        }
+      }
+    },
+    "v1TokenCheckResponse": {
+      "type": "object",
+      "properties": {
+        "account_id": {
+          "type": "string"
+        },
+        "email_address": {
+          "type": "string"
+        },
+        "organisations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1TokenCheckResponseOrganisationAccess"
+          }
+        }
+      }
+    },
+    "v1TokenCheckResponseOrganisationAccess": {
+      "type": "object",
+      "properties": {
+        "organisation_id": {
+          "type": "string"
+        },
+        "role": {
+          "type": "string"
+        }
+      }
+    },
+    "v1TokenRevokeRequest": {
+      "type": "object",
+      "properties": {
+        "token": {
+          "type": "string"
+        }
+      }
+    },
+    "v1TokenRevokeResponse": {
+      "type": "object"
+    },
+    "v1UpdateAccountDetailsRequest": {
+      "type": "object",
+      "properties": {
+        "account_id": {
+          "type": "string"
+        },
+        "forename": {
+          "type": "string"
+        },
+        "surname": {
+          "type": "string"
+        },
+        "telephone": {
+          "type": "string"
+        }
+      }
+    },
+    "v1UpdateAccountDetailsResponse": {
+      "type": "object"
+    },
+    "v1UpdateAccountPasswordRequest": {
+      "type": "object",
+      "properties": {
+        "account_id": {
+          "type": "string"
+        },
+        "new_password": {
+          "type": "string"
+        }
+      }
+    },
+    "v1UpdateAccountPasswordResponse": {
+      "type": "object"
+    },
+    "v1UpdateOrganisationRequest": {
+      "type": "object",
+      "properties": {
+        "organisation_id": {
+          "type": "string"
+        },
+        "display_name": {
+          "type": "string"
+        },
+        "telephone_number": {
+          "type": "string"
+        },
+        "website": {
+          "type": "string"
+        },
+        "email_address": {
+          "type": "string"
+        },
+        "address": {
+          "$ref": "#/definitions/internalwktAddress"
+        }
+      }
+    },
+    "v1UpdateOrganisationResponse": {
+      "type": "object"
+    }
+  },
+  "securityDefinitions": {
+    "ApiKeyAuth": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header"
+    }
+  },
+  "security": [
+    {
+      "ApiKeyAuth": [],
+      "BasicAuth": []
+    }
+  ]
+}

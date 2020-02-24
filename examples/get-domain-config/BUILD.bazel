@@ -1,0 +1,18 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_binary", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = ["main.go"],
+    importpath = "lwebco.de/cosmic-apis-spec/examples/get-domain-config",
+    visibility = ["//visibility:private"],
+    deps = [
+        "//domainconfig/client:go_default_library",
+        "//domainconfig/client/domain_config:go_default_library",
+    ],
+)
+
+go_binary(
+    name = "get-domain-config",
+    embed = [":go_default_library"],
+    visibility = ["//visibility:public"],
+)
