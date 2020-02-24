@@ -29,7 +29,7 @@ type Client struct {
 type ClientService interface {
 	AddOrganisationMember(params *AddOrganisationMemberParams, authInfo runtime.ClientAuthInfoWriter) (*AddOrganisationMemberOK, error)
 
-	CreateAccount(params *CreateAccountParams, authInfo runtime.ClientAuthInfoWriter) (*CreateAccountOK, error)
+	CreateAccount(params *CreateAccountParams) (*CreateAccountOK, error)
 
 	CreateOrganisation(params *CreateOrganisationParams, authInfo runtime.ClientAuthInfoWriter) (*CreateOrganisationOK, error)
 
@@ -37,7 +37,7 @@ type ClientService interface {
 
 	GetOrganisation(params *GetOrganisationParams, authInfo runtime.ClientAuthInfoWriter) (*GetOrganisationOK, error)
 
-	Login(params *LoginParams, authInfo runtime.ClientAuthInfoWriter) (*LoginOK, error)
+	Login(params *LoginParams) (*LoginOK, error)
 
 	QueryAccountMemberships(params *QueryAccountMembershipsParams, authInfo runtime.ClientAuthInfoWriter) (*QueryAccountMembershipsOK, error)
 
@@ -49,9 +49,9 @@ type ClientService interface {
 
 	SetOrganisationStatus(params *SetOrganisationStatusParams, authInfo runtime.ClientAuthInfoWriter) (*SetOrganisationStatusOK, error)
 
-	TokenCheck(params *TokenCheckParams, authInfo runtime.ClientAuthInfoWriter) (*TokenCheckOK, error)
+	TokenCheck(params *TokenCheckParams) (*TokenCheckOK, error)
 
-	TokenRevoke(params *TokenRevokeParams, authInfo runtime.ClientAuthInfoWriter) (*TokenRevokeOK, error)
+	TokenRevoke(params *TokenRevokeParams) (*TokenRevokeOK, error)
 
 	UpdateAccountDetails(params *UpdateAccountDetailsParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateAccountDetailsOK, error)
 
@@ -100,7 +100,7 @@ func (a *Client) AddOrganisationMember(params *AddOrganisationMemberParams, auth
 /*
   CreateAccount create account API
 */
-func (a *Client) CreateAccount(params *CreateAccountParams, authInfo runtime.ClientAuthInfoWriter) (*CreateAccountOK, error) {
+func (a *Client) CreateAccount(params *CreateAccountParams) (*CreateAccountOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewCreateAccountParams()
@@ -115,7 +115,6 @@ func (a *Client) CreateAccount(params *CreateAccountParams, authInfo runtime.Cli
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &CreateAccountReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	})
@@ -240,7 +239,7 @@ func (a *Client) GetOrganisation(params *GetOrganisationParams, authInfo runtime
 /*
   Login login API
 */
-func (a *Client) Login(params *LoginParams, authInfo runtime.ClientAuthInfoWriter) (*LoginOK, error) {
+func (a *Client) Login(params *LoginParams) (*LoginOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewLoginParams()
@@ -255,7 +254,6 @@ func (a *Client) Login(params *LoginParams, authInfo runtime.ClientAuthInfoWrite
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &LoginReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	})
@@ -450,7 +448,7 @@ func (a *Client) SetOrganisationStatus(params *SetOrganisationStatusParams, auth
 /*
   TokenCheck token check API
 */
-func (a *Client) TokenCheck(params *TokenCheckParams, authInfo runtime.ClientAuthInfoWriter) (*TokenCheckOK, error) {
+func (a *Client) TokenCheck(params *TokenCheckParams) (*TokenCheckOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewTokenCheckParams()
@@ -465,7 +463,6 @@ func (a *Client) TokenCheck(params *TokenCheckParams, authInfo runtime.ClientAut
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &TokenCheckReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	})
@@ -485,7 +482,7 @@ func (a *Client) TokenCheck(params *TokenCheckParams, authInfo runtime.ClientAut
 /*
   TokenRevoke token revoke API
 */
-func (a *Client) TokenRevoke(params *TokenRevokeParams, authInfo runtime.ClientAuthInfoWriter) (*TokenRevokeOK, error) {
+func (a *Client) TokenRevoke(params *TokenRevokeParams) (*TokenRevokeOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
 		params = NewTokenRevokeParams()
@@ -500,7 +497,6 @@ func (a *Client) TokenRevoke(params *TokenRevokeParams, authInfo runtime.ClientA
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &TokenRevokeReader{formats: a.formats},
-		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	})
