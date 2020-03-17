@@ -17,15 +17,15 @@ import (
 // swagger:model v1QueryAccountMembershipsResponse
 type V1QueryAccountMembershipsResponse struct {
 
-	// results
-	Results []*QueryAccountMembershipsResponseMap `json:"results"`
+	// memberships
+	Memberships []*QueryAccountMembershipsResponseMap `json:"memberships"`
 }
 
 // Validate validates this v1 query account memberships response
 func (m *V1QueryAccountMembershipsResponse) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateResults(formats); err != nil {
+	if err := m.validateMemberships(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -35,21 +35,21 @@ func (m *V1QueryAccountMembershipsResponse) Validate(formats strfmt.Registry) er
 	return nil
 }
 
-func (m *V1QueryAccountMembershipsResponse) validateResults(formats strfmt.Registry) error {
+func (m *V1QueryAccountMembershipsResponse) validateMemberships(formats strfmt.Registry) error {
 
-	if swag.IsZero(m.Results) { // not required
+	if swag.IsZero(m.Memberships) { // not required
 		return nil
 	}
 
-	for i := 0; i < len(m.Results); i++ {
-		if swag.IsZero(m.Results[i]) { // not required
+	for i := 0; i < len(m.Memberships); i++ {
+		if swag.IsZero(m.Memberships[i]) { // not required
 			continue
 		}
 
-		if m.Results[i] != nil {
-			if err := m.Results[i].Validate(formats); err != nil {
+		if m.Memberships[i] != nil {
+			if err := m.Memberships[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("results" + "." + strconv.Itoa(i))
+					return ve.ValidateName("memberships" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

@@ -541,14 +541,14 @@
         ]
       }
     },
-    "/v1/token/revoke": {
+    "/v1/token/renew": {
       "post": {
-        "operationId": "TokenRevoke",
+        "operationId": "TokenRenew",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1TokenRevokeResponse"
+              "$ref": "#/definitions/v1TokenRenewResponse"
             }
           }
         },
@@ -558,7 +558,59 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/v1TokenRevokeRequest"
+              "$ref": "#/definitions/v1TokenRenewRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Identities"
+        ]
+      }
+    },
+    "/v1/users/reset": {
+      "post": {
+        "operationId": "DoResetPassword",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1DoResetPasswordResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1DoResetPasswordRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Identities"
+        ]
+      }
+    },
+    "/v1/users/send-reset": {
+      "post": {
+        "operationId": "SendResetPassword",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1SendResetPasswordResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1SendResetPasswordRequest"
             }
           }
         ],
@@ -744,6 +796,23 @@
     "v1CreateOrganisationResponse": {
       "type": "object"
     },
+    "v1DoResetPasswordRequest": {
+      "type": "object",
+      "properties": {
+        "email_address": {
+          "type": "string"
+        },
+        "verification": {
+          "type": "string"
+        },
+        "new_password": {
+          "type": "string"
+        }
+      }
+    },
+    "v1DoResetPasswordResponse": {
+      "type": "object"
+    },
     "v1GetAccountResponse": {
       "type": "object",
       "properties": {
@@ -763,7 +832,7 @@
     "v1GetOrganisationResponse": {
       "type": "object",
       "properties": {
-        "result": {
+        "organisation": {
           "$ref": "#/definitions/v1Organisation"
         }
       }
@@ -802,6 +871,9 @@
           "items": {
             "$ref": "#/definitions/v1LoginResponseOrganisationAccess"
           }
+        },
+        "renew_token": {
+          "type": "string"
         }
       }
     },
@@ -870,7 +942,7 @@
     "v1QueryAccountMembershipsResponse": {
       "type": "object",
       "properties": {
-        "results": {
+        "memberships": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/QueryAccountMembershipsResponseMap"
@@ -881,7 +953,7 @@
     "v1QueryAccountsResponse": {
       "type": "object",
       "properties": {
-        "items": {
+        "accounts": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/v1Account"
@@ -895,7 +967,7 @@
     "v1QueryOrganisationsResponse": {
       "type": "object",
       "properties": {
-        "results": {
+        "organisations": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/v1Organisation"
@@ -905,6 +977,17 @@
           "$ref": "#/definitions/internalwktPaginationResponse"
         }
       }
+    },
+    "v1SendResetPasswordRequest": {
+      "type": "object",
+      "properties": {
+        "email_address": {
+          "type": "string"
+        }
+      }
+    },
+    "v1SendResetPasswordResponse": {
+      "type": "object"
     },
     "v1SetOrganisationStatusRequest": {
       "type": "object",
@@ -953,16 +1036,29 @@
         }
       }
     },
-    "v1TokenRevokeRequest": {
+    "v1TokenRenewRequest": {
+      "type": "object",
+      "properties": {
+        "token": {
+          "type": "string",
+          "description": "Required. The original token to renew."
+        },
+        "renew_token": {
+          "type": "string",
+          "description": "Required. The renew token provided at the time of the original token being provided."
+        }
+      }
+    },
+    "v1TokenRenewResponse": {
       "type": "object",
       "properties": {
         "token": {
           "type": "string"
+        },
+        "renew_token": {
+          "type": "string"
         }
       }
-    },
-    "v1TokenRevokeResponse": {
-      "type": "object"
     },
     "v1UpdateAccountDetailsRequest": {
       "type": "object",

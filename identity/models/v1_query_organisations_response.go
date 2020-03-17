@@ -17,28 +17,53 @@ import (
 // swagger:model v1QueryOrganisationsResponse
 type V1QueryOrganisationsResponse struct {
 
+	// organisations
+	Organisations []*V1Organisation `json:"organisations"`
+
 	// pagination
 	Pagination *InternalwktPaginationResponse `json:"pagination,omitempty"`
-
-	// results
-	Results []*V1Organisation `json:"results"`
 }
 
 // Validate validates this v1 query organisations response
 func (m *V1QueryOrganisationsResponse) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validatePagination(formats); err != nil {
+	if err := m.validateOrganisations(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateResults(formats); err != nil {
+	if err := m.validatePagination(formats); err != nil {
 		res = append(res, err)
 	}
 
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *V1QueryOrganisationsResponse) validateOrganisations(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Organisations) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.Organisations); i++ {
+		if swag.IsZero(m.Organisations[i]) { // not required
+			continue
+		}
+
+		if m.Organisations[i] != nil {
+			if err := m.Organisations[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("organisations" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
 	return nil
 }
 
@@ -55,31 +80,6 @@ func (m *V1QueryOrganisationsResponse) validatePagination(formats strfmt.Registr
 			}
 			return err
 		}
-	}
-
-	return nil
-}
-
-func (m *V1QueryOrganisationsResponse) validateResults(formats strfmt.Registry) error {
-
-	if swag.IsZero(m.Results) { // not required
-		return nil
-	}
-
-	for i := 0; i < len(m.Results); i++ {
-		if swag.IsZero(m.Results[i]) { // not required
-			continue
-		}
-
-		if m.Results[i] != nil {
-			if err := m.Results[i].Validate(formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("results" + "." + strconv.Itoa(i))
-				}
-				return err
-			}
-		}
-
 	}
 
 	return nil

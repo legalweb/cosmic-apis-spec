@@ -10,21 +10,21 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// V1TokenRevokeRequest v1 token revoke request
-// swagger:model v1TokenRevokeRequest
-type V1TokenRevokeRequest struct {
+// V1SendResetPasswordRequest v1 send reset password request
+// swagger:model v1SendResetPasswordRequest
+type V1SendResetPasswordRequest struct {
 
-	// token
-	Token string `json:"token,omitempty"`
+	// email address
+	EmailAddress string `json:"email_address,omitempty"`
 }
 
-// Validate validates this v1 token revoke request
-func (m *V1TokenRevokeRequest) Validate(formats strfmt.Registry) error {
+// Validate validates this v1 send reset password request
+func (m *V1SendResetPasswordRequest) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
 // MarshalBinary interface implementation
-func (m *V1TokenRevokeRequest) MarshalBinary() ([]byte, error) {
+func (m *V1SendResetPasswordRequest) MarshalBinary() ([]byte, error) {
 	if m == nil {
 		return nil, nil
 	}
@@ -32,8 +32,8 @@ func (m *V1TokenRevokeRequest) MarshalBinary() ([]byte, error) {
 }
 
 // UnmarshalBinary interface implementation
-func (m *V1TokenRevokeRequest) UnmarshalBinary(b []byte) error {
-	var res V1TokenRevokeRequest
+func (m *V1SendResetPasswordRequest) UnmarshalBinary(b []byte) error {
+	var res V1SendResetPasswordRequest
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

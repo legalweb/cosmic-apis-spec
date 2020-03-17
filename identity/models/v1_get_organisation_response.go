@@ -15,15 +15,15 @@ import (
 // swagger:model v1GetOrganisationResponse
 type V1GetOrganisationResponse struct {
 
-	// result
-	Result *V1Organisation `json:"result,omitempty"`
+	// organisation
+	Organisation *V1Organisation `json:"organisation,omitempty"`
 }
 
 // Validate validates this v1 get organisation response
 func (m *V1GetOrganisationResponse) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateResult(formats); err != nil {
+	if err := m.validateOrganisation(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -33,16 +33,16 @@ func (m *V1GetOrganisationResponse) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *V1GetOrganisationResponse) validateResult(formats strfmt.Registry) error {
+func (m *V1GetOrganisationResponse) validateOrganisation(formats strfmt.Registry) error {
 
-	if swag.IsZero(m.Result) { // not required
+	if swag.IsZero(m.Organisation) { // not required
 		return nil
 	}
 
-	if m.Result != nil {
-		if err := m.Result.Validate(formats); err != nil {
+	if m.Organisation != nil {
+		if err := m.Organisation.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("result")
+				return ve.ValidateName("organisation")
 			}
 			return err
 		}

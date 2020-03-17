@@ -26,6 +26,9 @@ type V1LoginResponse struct {
 	// organisations
 	Organisations []*V1LoginResponseOrganisationAccess `json:"organisations"`
 
+	// renew token
+	RenewToken string `json:"renew_token,omitempty"`
+
 	// token
 	Token string `json:"token,omitempty"`
 }

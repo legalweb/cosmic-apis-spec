@@ -33,6 +33,8 @@ type ClientService interface {
 
 	CreateOrganisation(params *CreateOrganisationParams, authInfo runtime.ClientAuthInfoWriter) (*CreateOrganisationOK, error)
 
+	DoResetPassword(params *DoResetPasswordParams) (*DoResetPasswordOK, error)
+
 	GetAccount(params *GetAccountParams, authInfo runtime.ClientAuthInfoWriter) (*GetAccountOK, error)
 
 	GetOrganisation(params *GetOrganisationParams, authInfo runtime.ClientAuthInfoWriter) (*GetOrganisationOK, error)
@@ -47,11 +49,13 @@ type ClientService interface {
 
 	RemoveOrganisationMember(params *RemoveOrganisationMemberParams, authInfo runtime.ClientAuthInfoWriter) (*RemoveOrganisationMemberOK, error)
 
+	SendResetPassword(params *SendResetPasswordParams) (*SendResetPasswordOK, error)
+
 	SetOrganisationStatus(params *SetOrganisationStatusParams, authInfo runtime.ClientAuthInfoWriter) (*SetOrganisationStatusOK, error)
 
 	TokenCheck(params *TokenCheckParams) (*TokenCheckOK, error)
 
-	TokenRevoke(params *TokenRevokeParams) (*TokenRevokeOK, error)
+	TokenRenew(params *TokenRenewParams) (*TokenRenewOK, error)
 
 	UpdateAccountDetails(params *UpdateAccountDetailsParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateAccountDetailsOK, error)
 
@@ -163,6 +167,40 @@ func (a *Client) CreateOrganisation(params *CreateOrganisationParams, authInfo r
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
 	msg := fmt.Sprintf("unexpected success response for CreateOrganisation: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+  DoResetPassword do reset password API
+*/
+func (a *Client) DoResetPassword(params *DoResetPasswordParams) (*DoResetPasswordOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDoResetPasswordParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "DoResetPassword",
+		Method:             "POST",
+		PathPattern:        "/v1/users/reset",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DoResetPasswordReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*DoResetPasswordOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for DoResetPassword: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 
@@ -411,6 +449,40 @@ func (a *Client) RemoveOrganisationMember(params *RemoveOrganisationMemberParams
 }
 
 /*
+  SendResetPassword send reset password API
+*/
+func (a *Client) SendResetPassword(params *SendResetPasswordParams) (*SendResetPasswordOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewSendResetPasswordParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "SendResetPassword",
+		Method:             "POST",
+		PathPattern:        "/v1/users/send-reset",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &SendResetPasswordReader{formats: a.formats},
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*SendResetPasswordOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for SendResetPassword: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
   SetOrganisationStatus set organisation status API
 */
 func (a *Client) SetOrganisationStatus(params *SetOrganisationStatusParams, authInfo runtime.ClientAuthInfoWriter) (*SetOrganisationStatusOK, error) {
@@ -480,36 +552,36 @@ func (a *Client) TokenCheck(params *TokenCheckParams) (*TokenCheckOK, error) {
 }
 
 /*
-  TokenRevoke token revoke API
+  TokenRenew token renew API
 */
-func (a *Client) TokenRevoke(params *TokenRevokeParams) (*TokenRevokeOK, error) {
+func (a *Client) TokenRenew(params *TokenRenewParams) (*TokenRenewOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewTokenRevokeParams()
+		params = NewTokenRenewParams()
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "TokenRevoke",
+		ID:                 "TokenRenew",
 		Method:             "POST",
-		PathPattern:        "/v1/token/revoke",
+		PathPattern:        "/v1/token/renew",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &TokenRevokeReader{formats: a.formats},
+		Reader:             &TokenRenewReader{formats: a.formats},
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
 		return nil, err
 	}
-	success, ok := result.(*TokenRevokeOK)
+	success, ok := result.(*TokenRenewOK)
 	if ok {
 		return success, nil
 	}
 	// unexpected success response
 	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for TokenRevoke: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	msg := fmt.Sprintf("unexpected success response for TokenRenew: API contract not enforced by server. Client expected to get an error, but got: %T", result)
 	panic(msg)
 }
 

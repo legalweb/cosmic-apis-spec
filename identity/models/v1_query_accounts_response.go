@@ -17,8 +17,8 @@ import (
 // swagger:model v1QueryAccountsResponse
 type V1QueryAccountsResponse struct {
 
-	// items
-	Items []*V1Account `json:"items"`
+	// accounts
+	Accounts []*V1Account `json:"accounts"`
 
 	// pagination
 	Pagination *InternalwktPaginationResponse `json:"pagination,omitempty"`
@@ -28,7 +28,7 @@ type V1QueryAccountsResponse struct {
 func (m *V1QueryAccountsResponse) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateItems(formats); err != nil {
+	if err := m.validateAccounts(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -42,21 +42,21 @@ func (m *V1QueryAccountsResponse) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *V1QueryAccountsResponse) validateItems(formats strfmt.Registry) error {
+func (m *V1QueryAccountsResponse) validateAccounts(formats strfmt.Registry) error {
 
-	if swag.IsZero(m.Items) { // not required
+	if swag.IsZero(m.Accounts) { // not required
 		return nil
 	}
 
-	for i := 0; i < len(m.Items); i++ {
-		if swag.IsZero(m.Items[i]) { // not required
+	for i := 0; i < len(m.Accounts); i++ {
+		if swag.IsZero(m.Accounts[i]) { // not required
 			continue
 		}
 
-		if m.Items[i] != nil {
-			if err := m.Items[i].Validate(formats); err != nil {
+		if m.Accounts[i] != nil {
+			if err := m.Accounts[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("items" + "." + strconv.Itoa(i))
+					return ve.ValidateName("accounts" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
