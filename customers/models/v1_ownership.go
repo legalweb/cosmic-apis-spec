@@ -18,7 +18,7 @@ type V1Ownership struct {
 	// asset
 	Asset *Customersv1Asset `json:"asset,omitempty"`
 
-	// id
+	// @OutputOnly
 	ID string `json:"id,omitempty"`
 
 	// liability
@@ -26,6 +26,7 @@ type V1Ownership struct {
 
 	// Name of the resource.
 	// Example: compendia.cosmicapis.com/ownerships/{ownershipId}
+	// @OutputOnly
 	Name string `json:"name,omitempty"`
 }
 

@@ -125,6 +125,16 @@
             }
           }
         },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1AddEmploymentRequest"
+            }
+          }
+        ],
         "tags": [
           "CustomerGateway"
         ],
@@ -281,6 +291,16 @@
             }
           }
         },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1AddOwnershipRequest"
+            }
+          }
+        ],
         "tags": [
           "CustomerGateway"
         ],
@@ -402,6 +422,16 @@
             }
           }
         },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1SetNotificationPreferencesRequest"
+            }
+          }
+        ],
         "tags": [
           "CustomerGateway"
         ],
@@ -718,11 +748,27 @@
         }
       }
     },
+    "v1AddEmploymentRequest": {
+      "type": "object",
+      "properties": {
+        "item": {
+          "$ref": "#/definitions/v1Employment"
+        }
+      }
+    },
     "v1AddEmploymentResponse": {
       "type": "object",
       "properties": {
         "employment_id": {
           "type": "string"
+        }
+      }
+    },
+    "v1AddOwnershipRequest": {
+      "type": "object",
+      "properties": {
+        "item": {
+          "$ref": "#/definitions/v1Ownership"
         }
       }
     },
@@ -1050,11 +1096,12 @@
       "type": "object",
       "properties": {
         "id": {
-          "type": "string"
+          "type": "string",
+          "title": "@OutputOnly"
         },
         "name": {
           "type": "string",
-          "title": "Name of the resource.\nExample: compendia.cosmicapis.com/ownerships/{ownershipId}"
+          "title": "Name of the resource.\nExample: compendia.cosmicapis.com/ownerships/{ownershipId}\n@OutputOnly"
         },
         "asset": {
           "$ref": "#/definitions/customersv1Asset"
@@ -1069,6 +1116,17 @@
     },
     "v1RemoveOwnershipResponse": {
       "type": "object"
+    },
+    "v1SetNotificationPreferencesRequest": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1NotificationPreference"
+          }
+        }
+      }
     },
     "v1SetNotificationPreferencesResponse": {
       "type": "object"

@@ -15,12 +15,14 @@ import (
 	cr "github.com/go-openapi/runtime/client"
 
 	strfmt "github.com/go-openapi/strfmt"
+
+	"lwebco.de/cosmic-apis-spec/customers/models"
 )
 
 // NewCustomerGatewaySetNotificationPreferencesParams creates a new CustomerGatewaySetNotificationPreferencesParams object
 // with the default values initialized.
 func NewCustomerGatewaySetNotificationPreferencesParams() *CustomerGatewaySetNotificationPreferencesParams {
-
+	var ()
 	return &CustomerGatewaySetNotificationPreferencesParams{
 
 		timeout: cr.DefaultTimeout,
@@ -30,7 +32,7 @@ func NewCustomerGatewaySetNotificationPreferencesParams() *CustomerGatewaySetNot
 // NewCustomerGatewaySetNotificationPreferencesParamsWithTimeout creates a new CustomerGatewaySetNotificationPreferencesParams object
 // with the default values initialized, and the ability to set a timeout on a request
 func NewCustomerGatewaySetNotificationPreferencesParamsWithTimeout(timeout time.Duration) *CustomerGatewaySetNotificationPreferencesParams {
-
+	var ()
 	return &CustomerGatewaySetNotificationPreferencesParams{
 
 		timeout: timeout,
@@ -40,7 +42,7 @@ func NewCustomerGatewaySetNotificationPreferencesParamsWithTimeout(timeout time.
 // NewCustomerGatewaySetNotificationPreferencesParamsWithContext creates a new CustomerGatewaySetNotificationPreferencesParams object
 // with the default values initialized, and the ability to set a context for a request
 func NewCustomerGatewaySetNotificationPreferencesParamsWithContext(ctx context.Context) *CustomerGatewaySetNotificationPreferencesParams {
-
+	var ()
 	return &CustomerGatewaySetNotificationPreferencesParams{
 
 		Context: ctx,
@@ -50,7 +52,7 @@ func NewCustomerGatewaySetNotificationPreferencesParamsWithContext(ctx context.C
 // NewCustomerGatewaySetNotificationPreferencesParamsWithHTTPClient creates a new CustomerGatewaySetNotificationPreferencesParams object
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewCustomerGatewaySetNotificationPreferencesParamsWithHTTPClient(client *http.Client) *CustomerGatewaySetNotificationPreferencesParams {
-
+	var ()
 	return &CustomerGatewaySetNotificationPreferencesParams{
 		HTTPClient: client,
 	}
@@ -60,6 +62,10 @@ func NewCustomerGatewaySetNotificationPreferencesParamsWithHTTPClient(client *ht
 for the customer gateway set notification preferences operation typically these are written to a http.Request
 */
 type CustomerGatewaySetNotificationPreferencesParams struct {
+
+	/*Body*/
+	Body *models.V1SetNotificationPreferencesRequest
+
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
@@ -98,6 +104,17 @@ func (o *CustomerGatewaySetNotificationPreferencesParams) SetHTTPClient(client *
 	o.HTTPClient = client
 }
 
+// WithBody adds the body to the customer gateway set notification preferences params
+func (o *CustomerGatewaySetNotificationPreferencesParams) WithBody(body *models.V1SetNotificationPreferencesRequest) *CustomerGatewaySetNotificationPreferencesParams {
+	o.SetBody(body)
+	return o
+}
+
+// SetBody adds the body to the customer gateway set notification preferences params
+func (o *CustomerGatewaySetNotificationPreferencesParams) SetBody(body *models.V1SetNotificationPreferencesRequest) {
+	o.Body = body
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *CustomerGatewaySetNotificationPreferencesParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -105,6 +122,12 @@ func (o *CustomerGatewaySetNotificationPreferencesParams) WriteToRequest(r runti
 		return err
 	}
 	var res []error
+
+	if o.Body != nil {
+		if err := r.SetBodyParam(o.Body); err != nil {
+			return err
+		}
+	}
 
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)

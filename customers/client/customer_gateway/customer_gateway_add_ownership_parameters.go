@@ -15,12 +15,14 @@ import (
 	cr "github.com/go-openapi/runtime/client"
 
 	strfmt "github.com/go-openapi/strfmt"
+
+	"lwebco.de/cosmic-apis-spec/customers/models"
 )
 
 // NewCustomerGatewayAddOwnershipParams creates a new CustomerGatewayAddOwnershipParams object
 // with the default values initialized.
 func NewCustomerGatewayAddOwnershipParams() *CustomerGatewayAddOwnershipParams {
-
+	var ()
 	return &CustomerGatewayAddOwnershipParams{
 
 		timeout: cr.DefaultTimeout,
@@ -30,7 +32,7 @@ func NewCustomerGatewayAddOwnershipParams() *CustomerGatewayAddOwnershipParams {
 // NewCustomerGatewayAddOwnershipParamsWithTimeout creates a new CustomerGatewayAddOwnershipParams object
 // with the default values initialized, and the ability to set a timeout on a request
 func NewCustomerGatewayAddOwnershipParamsWithTimeout(timeout time.Duration) *CustomerGatewayAddOwnershipParams {
-
+	var ()
 	return &CustomerGatewayAddOwnershipParams{
 
 		timeout: timeout,
@@ -40,7 +42,7 @@ func NewCustomerGatewayAddOwnershipParamsWithTimeout(timeout time.Duration) *Cus
 // NewCustomerGatewayAddOwnershipParamsWithContext creates a new CustomerGatewayAddOwnershipParams object
 // with the default values initialized, and the ability to set a context for a request
 func NewCustomerGatewayAddOwnershipParamsWithContext(ctx context.Context) *CustomerGatewayAddOwnershipParams {
-
+	var ()
 	return &CustomerGatewayAddOwnershipParams{
 
 		Context: ctx,
@@ -50,7 +52,7 @@ func NewCustomerGatewayAddOwnershipParamsWithContext(ctx context.Context) *Custo
 // NewCustomerGatewayAddOwnershipParamsWithHTTPClient creates a new CustomerGatewayAddOwnershipParams object
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewCustomerGatewayAddOwnershipParamsWithHTTPClient(client *http.Client) *CustomerGatewayAddOwnershipParams {
-
+	var ()
 	return &CustomerGatewayAddOwnershipParams{
 		HTTPClient: client,
 	}
@@ -60,6 +62,10 @@ func NewCustomerGatewayAddOwnershipParamsWithHTTPClient(client *http.Client) *Cu
 for the customer gateway add ownership operation typically these are written to a http.Request
 */
 type CustomerGatewayAddOwnershipParams struct {
+
+	/*Body*/
+	Body *models.V1AddOwnershipRequest
+
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
@@ -98,6 +104,17 @@ func (o *CustomerGatewayAddOwnershipParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithBody adds the body to the customer gateway add ownership params
+func (o *CustomerGatewayAddOwnershipParams) WithBody(body *models.V1AddOwnershipRequest) *CustomerGatewayAddOwnershipParams {
+	o.SetBody(body)
+	return o
+}
+
+// SetBody adds the body to the customer gateway add ownership params
+func (o *CustomerGatewayAddOwnershipParams) SetBody(body *models.V1AddOwnershipRequest) {
+	o.Body = body
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *CustomerGatewayAddOwnershipParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -105,6 +122,12 @@ func (o *CustomerGatewayAddOwnershipParams) WriteToRequest(r runtime.ClientReque
 		return err
 	}
 	var res []error
+
+	if o.Body != nil {
+		if err := r.SetBodyParam(o.Body); err != nil {
+			return err
+		}
+	}
 
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)

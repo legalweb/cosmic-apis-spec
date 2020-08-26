@@ -15,12 +15,14 @@ import (
 	cr "github.com/go-openapi/runtime/client"
 
 	strfmt "github.com/go-openapi/strfmt"
+
+	"lwebco.de/cosmic-apis-spec/customers/models"
 )
 
 // NewCustomerGatewayAddEmploymentParams creates a new CustomerGatewayAddEmploymentParams object
 // with the default values initialized.
 func NewCustomerGatewayAddEmploymentParams() *CustomerGatewayAddEmploymentParams {
-
+	var ()
 	return &CustomerGatewayAddEmploymentParams{
 
 		timeout: cr.DefaultTimeout,
@@ -30,7 +32,7 @@ func NewCustomerGatewayAddEmploymentParams() *CustomerGatewayAddEmploymentParams
 // NewCustomerGatewayAddEmploymentParamsWithTimeout creates a new CustomerGatewayAddEmploymentParams object
 // with the default values initialized, and the ability to set a timeout on a request
 func NewCustomerGatewayAddEmploymentParamsWithTimeout(timeout time.Duration) *CustomerGatewayAddEmploymentParams {
-
+	var ()
 	return &CustomerGatewayAddEmploymentParams{
 
 		timeout: timeout,
@@ -40,7 +42,7 @@ func NewCustomerGatewayAddEmploymentParamsWithTimeout(timeout time.Duration) *Cu
 // NewCustomerGatewayAddEmploymentParamsWithContext creates a new CustomerGatewayAddEmploymentParams object
 // with the default values initialized, and the ability to set a context for a request
 func NewCustomerGatewayAddEmploymentParamsWithContext(ctx context.Context) *CustomerGatewayAddEmploymentParams {
-
+	var ()
 	return &CustomerGatewayAddEmploymentParams{
 
 		Context: ctx,
@@ -50,7 +52,7 @@ func NewCustomerGatewayAddEmploymentParamsWithContext(ctx context.Context) *Cust
 // NewCustomerGatewayAddEmploymentParamsWithHTTPClient creates a new CustomerGatewayAddEmploymentParams object
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewCustomerGatewayAddEmploymentParamsWithHTTPClient(client *http.Client) *CustomerGatewayAddEmploymentParams {
-
+	var ()
 	return &CustomerGatewayAddEmploymentParams{
 		HTTPClient: client,
 	}
@@ -60,6 +62,10 @@ func NewCustomerGatewayAddEmploymentParamsWithHTTPClient(client *http.Client) *C
 for the customer gateway add employment operation typically these are written to a http.Request
 */
 type CustomerGatewayAddEmploymentParams struct {
+
+	/*Body*/
+	Body *models.V1AddEmploymentRequest
+
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
@@ -98,6 +104,17 @@ func (o *CustomerGatewayAddEmploymentParams) SetHTTPClient(client *http.Client) 
 	o.HTTPClient = client
 }
 
+// WithBody adds the body to the customer gateway add employment params
+func (o *CustomerGatewayAddEmploymentParams) WithBody(body *models.V1AddEmploymentRequest) *CustomerGatewayAddEmploymentParams {
+	o.SetBody(body)
+	return o
+}
+
+// SetBody adds the body to the customer gateway add employment params
+func (o *CustomerGatewayAddEmploymentParams) SetBody(body *models.V1AddEmploymentRequest) {
+	o.Body = body
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *CustomerGatewayAddEmploymentParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -105,6 +122,12 @@ func (o *CustomerGatewayAddEmploymentParams) WriteToRequest(r runtime.ClientRequ
 		return err
 	}
 	var res []error
+
+	if o.Body != nil {
+		if err := r.SetBodyParam(o.Body); err != nil {
+			return err
+		}
+	}
 
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
