@@ -1,0 +1,1090 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Customers API",
+    "version": "1.0"
+  },
+  "host": "customers.cosmicapis.com",
+  "schemes": [
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/v1/applications": {
+      "get": {
+        "operationId": "CustomerGateway_ListApplications",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ListApplicationsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "tags": [
+          "CustomerGateway"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ]
+      }
+    },
+    "/v1/applications/{app_type}/{app_id}": {
+      "get": {
+        "operationId": "CustomerGateway_GetApplication",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetApplicationResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "app_type",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "app_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "CustomerGateway"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ]
+      }
+    },
+    "/v1/employment": {
+      "get": {
+        "operationId": "CustomerGateway_ListEmployment",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ListEmploymentResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "tags": [
+          "CustomerGateway"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ]
+      },
+      "post": {
+        "operationId": "CustomerGateway_AddEmployment",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1AddEmploymentResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "tags": [
+          "CustomerGateway"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ]
+      }
+    },
+    "/v1/employment/{employment_id}": {
+      "delete": {
+        "operationId": "CustomerGateway_RemoveEmployment",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1RemoveEmploymentResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "employment_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "CustomerGateway"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ]
+      },
+      "put": {
+        "operationId": "CustomerGateway_UpdateEmployment",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1UpdateEmploymentResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "employment_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "CustomerGateway"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ]
+      }
+    },
+    "/v1/notifications": {
+      "get": {
+        "operationId": "CustomerGateway_GetNotifications",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/v1Notification"
+                },
+                "error": {
+                  "$ref": "#/definitions/runtimeStreamError"
+                }
+              },
+              "title": "Stream result of v1Notification"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "tags": [
+          "CustomerGateway"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ]
+      }
+    },
+    "/v1/ownerships": {
+      "get": {
+        "operationId": "CustomerGateway_ListOwnerships",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ListOwnershipsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "tags": [
+          "CustomerGateway"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ]
+      },
+      "post": {
+        "operationId": "CustomerGateway_AddOwnership",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1AddOwnershipResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "tags": [
+          "CustomerGateway"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ]
+      }
+    },
+    "/v1/ownerships/{ownership_id}": {
+      "delete": {
+        "operationId": "CustomerGateway_RemoveOwnership",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1RemoveOwnershipResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "ownership_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "CustomerGateway"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ]
+      },
+      "put": {
+        "operationId": "CustomerGateway_UpdateOwnership",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1UpdateOwnershipResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "ownership_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "CustomerGateway"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ]
+      }
+    },
+    "/v1/settings/notifications": {
+      "get": {
+        "operationId": "CustomerGateway_ListNotificationPreferences",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ListNotificationPreferencesResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "tags": [
+          "CustomerGateway"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ]
+      },
+      "post": {
+        "summary": "Merge the notification preferences which are currently available with the\npreferences provided in SetNotificationPreferencesRequest",
+        "operationId": "CustomerGateway_SetNotificationPreferences",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1SetNotificationPreferencesResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "tags": [
+          "CustomerGateway"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ]
+      }
+    },
+    "/v1/summary": {
+      "get": {
+        "operationId": "CustomerGateway_GetSummary",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetSummaryResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "tags": [
+          "CustomerGateway"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "AssetBankAccount": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "$ref": "#/definitions/BankAccountBankAccountType"
+        },
+        "bank_name": {
+          "type": "string"
+        }
+      }
+    },
+    "AssetGeneric": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "$ref": "#/definitions/GenericGenericType"
+        },
+        "subtype": {
+          "type": "string"
+        },
+        "make": {
+          "type": "string"
+        },
+        "model": {
+          "type": "string"
+        },
+        "age_in_years": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "chassis_no": {
+          "type": "string"
+        },
+        "electric": {
+          "type": "boolean",
+          "format": "boolean"
+        }
+      },
+      "description": "@todo(bweston92): add a better phrase for this category\nthis just prevents us from having an Asset category of\nAsset which it clearly is."
+    },
+    "AssetOther": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "$ref": "#/definitions/OtherAssetOtherType"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "AssetPension": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "$ref": "#/definitions/PensionPensionType"
+        },
+        "provider_name": {
+          "type": "string"
+        }
+      }
+    },
+    "AssetShares": {
+      "type": "object",
+      "properties": {
+        "is_limited_company_private": {
+          "type": "boolean",
+          "format": "boolean",
+          "description": "Is this is false we assume is it a public limited company\notherwise it is a private limited company."
+        },
+        "company_name": {
+          "type": "string"
+        }
+      }
+    },
+    "BankAccountBankAccountType": {
+      "type": "string",
+      "enum": [
+        "BANK_ACCOUNT_TYPE_CURRENT_ACCOUNT",
+        "BANK_ACCOUNT_TYPE_SAVINGS_ACCOUNT"
+      ],
+      "default": "BANK_ACCOUNT_TYPE_CURRENT_ACCOUNT"
+    },
+    "GenericGenericType": {
+      "type": "string",
+      "enum": [
+        "ASSET_GENERIC_TYPE_TRANSPORTATION",
+        "ASSET_GENERIC_TYPE_LOGISTICS_AND_HAULAGE",
+        "ASSET_GENERIC_TYPE_AGRICULTURAL_AND_GROUNDS_EQUIP",
+        "ASSET_GENERIC_TYPE_HOSPITALITY_AND_LEISURE_EQUIP",
+        "ASSET_GENERIC_TYPE_TECH_AND_SECURITY_EQUIP",
+        "ASSET_GENERIC_TYPE_PLANT_EQUIP",
+        "ASSET_GENERIC_TYPE_CONSTRUCTION_EQUIP",
+        "ASSET_GENERIC_TYPE_FURNITURE",
+        "ASSET_GENERIC_TYPE_WASTE",
+        "ASSET_GENERIC_TYPE_ENERGY"
+      ],
+      "default": "ASSET_GENERIC_TYPE_TRANSPORTATION"
+    },
+    "OtherAssetOtherType": {
+      "type": "string",
+      "enum": [
+        "PERSONAL_EFFECTS",
+        "ART"
+      ],
+      "default": "PERSONAL_EFFECTS"
+    },
+    "PensionPensionType": {
+      "type": "string",
+      "enum": [
+        "SIPP",
+        "SSAS",
+        "WORKPLACE_PENSION"
+      ],
+      "default": "SIPP"
+    },
+    "customersv1Asset": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/googletypeMoney"
+        },
+        "ownership_percentage": {
+          "type": "number",
+          "format": "float"
+        },
+        "property": {
+          "$ref": "#/definitions/v1AssetProperty"
+        },
+        "generic": {
+          "$ref": "#/definitions/AssetGeneric"
+        },
+        "bank_account": {
+          "$ref": "#/definitions/AssetBankAccount"
+        },
+        "pension": {
+          "$ref": "#/definitions/AssetPension"
+        },
+        "shares": {
+          "$ref": "#/definitions/AssetShares"
+        },
+        "other": {
+          "$ref": "#/definitions/AssetOther"
+        }
+      }
+    },
+    "googletypeMoney": {
+      "type": "object",
+      "properties": {
+        "currency_code": {
+          "type": "string",
+          "description": "The 3-letter currency code defined in ISO 4217."
+        },
+        "units": {
+          "type": "string",
+          "format": "int64",
+          "description": "The whole units of the amount.\nFor example if `currencyCode` is `\"USD\"`, then 1 unit is one US dollar."
+        },
+        "nanos": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Number of nano (10^-9) units of the amount.\nThe value must be between -999,999,999 and +999,999,999 inclusive.\nIf `units` is positive, `nanos` must be positive or zero.\nIf `units` is zero, `nanos` can be positive, zero, or negative.\nIf `units` is negative, `nanos` must be negative or zero.\nFor example $-1.75 is represented as `units`=-1 and `nanos`=-750,000,000."
+        }
+      },
+      "description": "Represents an amount of money with its currency type."
+    },
+    "internalwktAddress": {
+      "type": "object",
+      "properties": {
+        "building": {
+          "type": "string",
+          "description": "Optional."
+        },
+        "street_name": {
+          "type": "string",
+          "description": "Optional."
+        },
+        "town": {
+          "type": "string",
+          "description": "Optional."
+        },
+        "city": {
+          "type": "string",
+          "description": "Optional."
+        },
+        "county": {
+          "type": "string",
+          "description": "Optional."
+        },
+        "postal_code": {
+          "type": "string",
+          "description": "Optional."
+        },
+        "region": {
+          "type": "string",
+          "description": "Required. ISO-3166 three letter code of the country/region of the address.\nThis is never inferred and it is up to the user to ensure the value is\ncorrect. See https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes\nfor details.\nExample: \"GBR\" for United Kingdom."
+        }
+      }
+    },
+    "internalwktDate": {
+      "type": "object",
+      "properties": {
+        "year": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "month": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "day": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "type_url": {
+          "type": "string",
+          "description": "A URL/resource name that uniquely identifies the type of the serialized\nprotocol buffer message. This string must contain at least\none \"/\" character. The last segment of the URL's path must represent\nthe fully qualified name of the type (as in\n`path/google.protobuf.Duration`). The name should be in a canonical form\n(e.g., leading \".\" is not accepted).\n\nIn practice, teams usually precompile into the binary all types that they\nexpect it to use in the context of Any. However, for URLs which use the\nscheme `http`, `https`, or no scheme, one can optionally set up a type\nserver that maps type URLs to message definitions as follows:\n\n* If no scheme is provided, `https` is assumed.\n* An HTTP GET on the URL must yield a [google.protobuf.Type][]\n  value in binary format, or produce an error.\n* Applications are allowed to cache lookup results based on the\n  URL, or have them precompiled into a binary to avoid any\n  lookup. Therefore, binary compatibility needs to be preserved\n  on changes to types. (Use versioned type names to manage\n  breaking changes.)\n\nNote: this functionality is not currently available in the official\nprotobuf release, and it is not used for type URLs beginning with\ntype.googleapis.com.\n\nSchemes other than `http`, `https` (or the empty scheme) might be\nused with implementation specific semantics."
+        },
+        "value": {
+          "type": "string",
+          "format": "byte",
+          "description": "Must be a valid serialized protocol buffer of the above specified type."
+        }
+      },
+      "description": "`Any` contains an arbitrary serialized protocol buffer message along with a\nURL that describes the type of the serialized message.\n\nProtobuf library provides support to pack/unpack Any values in the form\nof utility functions or additional generated methods of the Any type.\n\nExample 1: Pack and unpack a message in C++.\n\n    Foo foo = ...;\n    Any any;\n    any.PackFrom(foo);\n    ...\n    if (any.UnpackTo(\u0026foo)) {\n      ...\n    }\n\nExample 2: Pack and unpack a message in Java.\n\n    Foo foo = ...;\n    Any any = Any.pack(foo);\n    ...\n    if (any.is(Foo.class)) {\n      foo = any.unpack(Foo.class);\n    }\n\n Example 3: Pack and unpack a message in Python.\n\n    foo = Foo(...)\n    any = Any()\n    any.Pack(foo)\n    ...\n    if any.Is(Foo.DESCRIPTOR):\n      any.Unpack(foo)\n      ...\n\n Example 4: Pack and unpack a message in Go\n\n     foo := \u0026pb.Foo{...}\n     any, err := ptypes.MarshalAny(foo)\n     ...\n     foo := \u0026pb.Foo{}\n     if err := ptypes.UnmarshalAny(any, foo); err != nil {\n       ...\n     }\n\nThe pack methods provided by protobuf library will by default use\n'type.googleapis.com/full.type.name' as the type URL and the unpack\nmethods only use the fully qualified type name after the last '/'\nin the type URL, for example \"foo.bar.com/x/y.z\" will yield type\nname \"y.z\".\n\n\nJSON\n====\nThe JSON representation of an `Any` value uses the regular\nrepresentation of the deserialized, embedded message, with an\nadditional field `@type` which contains the type URL. Example:\n\n    package google.profile;\n    message Person {\n      string first_name = 1;\n      string last_name = 2;\n    }\n\n    {\n      \"@type\": \"type.googleapis.com/google.profile.Person\",\n      \"firstName\": \u003cstring\u003e,\n      \"lastName\": \u003cstring\u003e\n    }\n\nIf the embedded message type is well-known and has a custom JSON\nrepresentation, that representation will be embedded adding a field\n`value` which holds the custom JSON in addition to the `@type`\nfield. Example (for message [google.protobuf.Duration][]):\n\n    {\n      \"@type\": \"type.googleapis.com/google.protobuf.Duration\",\n      \"value\": \"1.212s\"\n    }"
+    },
+    "runtimeError": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "string"
+        },
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "runtimeStreamError": {
+      "type": "object",
+      "properties": {
+        "grpc_code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "http_code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "http_status": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "v1AddEmploymentResponse": {
+      "type": "object",
+      "properties": {
+        "employment_id": {
+          "type": "string"
+        }
+      }
+    },
+    "v1AddOwnershipResponse": {
+      "type": "object",
+      "properties": {
+        "ownership_id": {
+          "type": "string"
+        }
+      }
+    },
+    "v1ApplicationSummary": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "title": "The full name of the application for example:\napplications.cosmicapis.com/organisations/{organisationId}/commercial-mortgage/{applicationId}"
+        },
+        "app_type": {
+          "type": "string",
+          "description": "The application type for example \"commercial-mortgage\"."
+        },
+        "app_id": {
+          "type": "string",
+          "description": "The application identifier a UUID."
+        },
+        "status": {
+          "type": "string",
+          "description": "The current status of the application in a human friendly way."
+        },
+        "label": {
+          "type": "string",
+          "description": "Friendly name for the application for example \"£175,000 Commercial mortgage @ 75% LTV\"\nor \"£35,000 Business Loan\"."
+        },
+        "adviser": {
+          "type": "string",
+          "description": "The name of the primary adviser who is handling the application."
+        },
+        "created": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The time the application was created."
+        }
+      }
+    },
+    "v1AssetProperty": {
+      "type": "object",
+      "properties": {
+        "address": {
+          "$ref": "#/definitions/internalwktAddress"
+        },
+        "type": {
+          "$ref": "#/definitions/v1AssetPropertyPropertyType"
+        },
+        "subtype": {
+          "type": "string"
+        },
+        "is_own_home": {
+          "type": "boolean",
+          "format": "boolean",
+          "description": "When true the property type MUST be PROPERTY_TYPE_RESIDENTIAL."
+        },
+        "beds": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
+    "v1AssetPropertyPropertyType": {
+      "type": "string",
+      "enum": [
+        "PROPERTY_TYPE_RESIDENTIAL",
+        "PROPERTY_TYPE_SEMI_COMMERCIAL",
+        "PROPERTY_TYPE_COMMERCIAL",
+        "PROPERTY_TYPE_RETAIL",
+        "PROPERTY_TYPE_AGRICULTURAL",
+        "PROPERTY_TYPE_LEISURE",
+        "PROPERTY_TYPE_LAND",
+        "PROPERTY_TYPE_CARE",
+        "PROPERTY_TYPE_PROFESSIONAL_PRACTICE",
+        "PROPERTY_TYPE_DEVELOPMENT"
+      ],
+      "default": "PROPERTY_TYPE_RESIDENTIAL"
+    },
+    "v1CompanySummary": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "title": "The full name of the company for example:\ncompanies.cosmicapis.com/organisations/{organisationId}/companies/{companyId}"
+        },
+        "label": {
+          "type": "string",
+          "title": "The label of the company for example \"Legalwebb UK Ltd\""
+        },
+        "credit_score_value": {
+          "type": "integer",
+          "format": "int64",
+          "description": "The company credit score when last checked, this value is out of 999."
+        },
+        "credit_score_last_checked": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The last time the credit score was checked."
+        }
+      }
+    },
+    "v1Employment": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "title": "When updating this field is ignored and will use the\nfield from the UpdateEmploymentRequest.\n@OutputOnly"
+        },
+        "employer": {
+          "type": "string"
+        },
+        "address": {
+          "$ref": "#/definitions/internalwktAddress"
+        },
+        "start_date": {
+          "$ref": "#/definitions/internalwktDate"
+        },
+        "status": {
+          "$ref": "#/definitions/v1EmploymentStatus"
+        },
+        "job_title": {
+          "type": "string"
+        },
+        "basic_salary": {
+          "$ref": "#/definitions/googletypeMoney"
+        },
+        "average_monthly_bonus": {
+          "$ref": "#/definitions/googletypeMoney"
+        },
+        "average_monthly_overtime": {
+          "$ref": "#/definitions/googletypeMoney"
+        },
+        "is_zero_hour_contract": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "gross_income_three_months": {
+          "$ref": "#/definitions/googletypeMoney"
+        },
+        "gross_income_six_months": {
+          "$ref": "#/definitions/googletypeMoney"
+        }
+      }
+    },
+    "v1EmploymentStatus": {
+      "type": "string",
+      "enum": [
+        "EMPLOYMENT_STATUS_UNKNOWN",
+        "EMPLOYMENT_STATUS_EMPLOYED",
+        "EMPLOYMENT_STATUS_SELF_EMPLOYED",
+        "EMPLOYMENT_STATUS_DIRECTOR",
+        "EMPLOYMENT_STATUS_RETIRED",
+        "EMPLOYMENT_STATUS_UNEMPLOYED"
+      ],
+      "default": "EMPLOYMENT_STATUS_UNKNOWN"
+    },
+    "v1GetApplicationResponse": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "v1GetSummaryResponse": {
+      "type": "object",
+      "properties": {
+        "applications": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1ApplicationSummary"
+          },
+          "description": "The last 5 applications."
+        },
+        "companies": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1CompanySummary"
+          },
+          "description": "All the companies the customer is linked too."
+        },
+        "asset_count": {
+          "type": "integer",
+          "format": "int64",
+          "description": "The total count of assets the customer has."
+        },
+        "linked_accounts_packages": {
+          "type": "integer",
+          "format": "int64",
+          "description": "The total number of accounts packages the customer has linked."
+        },
+        "linked_bank_accounts": {
+          "type": "integer",
+          "format": "int64",
+          "description": "The total number of bank accounts the customer has linked."
+        },
+        "identity_is_verified": {
+          "type": "boolean",
+          "format": "boolean",
+          "title": "Has the customer gone through identity verification?"
+        },
+        "net_worth": {
+          "$ref": "#/definitions/googletypeMoney",
+          "description": "The total net-worth of the customer."
+        }
+      }
+    },
+    "v1Liability": {
+      "type": "object",
+      "properties": {
+        "lender_name": {
+          "type": "string"
+        },
+        "total_monthly_repayment": {
+          "$ref": "#/definitions/googletypeMoney",
+          "description": "The full payment amount each month by all parties."
+        },
+        "total_outstanding_balance": {
+          "$ref": "#/definitions/googletypeMoney",
+          "description": "The total outstanding balance."
+        },
+        "ownership_percentage": {
+          "type": "number",
+          "format": "float",
+          "description": "What percentage of the liability is paid by this customer."
+        }
+      }
+    },
+    "v1ListApplicationsResponse": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1ApplicationSummary"
+          }
+        }
+      }
+    },
+    "v1ListEmploymentResponse": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1Employment"
+          }
+        }
+      }
+    },
+    "v1ListNotificationPreferencesResponse": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1NotificationPreference"
+          }
+        }
+      }
+    },
+    "v1ListOwnershipsResponse": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1Ownership"
+          }
+        }
+      }
+    },
+    "v1Notification": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The name of the notification."
+        },
+        "type": {
+          "type": "string",
+          "description": "The type of notification."
+        },
+        "message": {
+          "type": "string"
+        },
+        "metadata": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "created": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "v1NotificationPreference": {
+      "type": "object",
+      "properties": {
+        "category": {
+          "type": "string",
+          "description": "A notification category.\n@todo(bweston92): list available notification categories."
+        },
+        "enabled_sms": {
+          "type": "boolean",
+          "format": "boolean",
+          "description": "Whether or not the customer would like to receive\nnotifications via SMS for this category."
+        },
+        "enabled_email": {
+          "type": "boolean",
+          "format": "boolean",
+          "description": "Whether or not the customer would like to receive\nnotifications via e-mail for this category."
+        }
+      }
+    },
+    "v1Ownership": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string",
+          "title": "Name of the resource.\nExample: compendia.cosmicapis.com/ownerships/{ownershipId}"
+        },
+        "asset": {
+          "$ref": "#/definitions/customersv1Asset"
+        },
+        "liability": {
+          "$ref": "#/definitions/v1Liability"
+        }
+      }
+    },
+    "v1RemoveEmploymentResponse": {
+      "type": "object"
+    },
+    "v1RemoveOwnershipResponse": {
+      "type": "object"
+    },
+    "v1SetNotificationPreferencesResponse": {
+      "type": "object"
+    },
+    "v1UpdateEmploymentResponse": {
+      "type": "object"
+    },
+    "v1UpdateOwnershipResponse": {
+      "type": "object"
+    }
+  },
+  "securityDefinitions": {
+    "ApiKeyAuth": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header"
+    }
+  }
+}
