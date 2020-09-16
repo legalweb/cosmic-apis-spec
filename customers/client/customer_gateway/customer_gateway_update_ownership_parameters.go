@@ -15,6 +15,8 @@ import (
 	cr "github.com/go-openapi/runtime/client"
 
 	strfmt "github.com/go-openapi/strfmt"
+
+	"lwebco.de/cosmic-apis-spec/customers/models"
 )
 
 // NewCustomerGatewayUpdateOwnershipParams creates a new CustomerGatewayUpdateOwnershipParams object
@@ -61,6 +63,8 @@ for the customer gateway update ownership operation typically these are written 
 */
 type CustomerGatewayUpdateOwnershipParams struct {
 
+	/*Body*/
+	Body *models.V1UpdateOwnershipRequest
 	/*OwnershipID*/
 	OwnershipID string
 
@@ -102,6 +106,17 @@ func (o *CustomerGatewayUpdateOwnershipParams) SetHTTPClient(client *http.Client
 	o.HTTPClient = client
 }
 
+// WithBody adds the body to the customer gateway update ownership params
+func (o *CustomerGatewayUpdateOwnershipParams) WithBody(body *models.V1UpdateOwnershipRequest) *CustomerGatewayUpdateOwnershipParams {
+	o.SetBody(body)
+	return o
+}
+
+// SetBody adds the body to the customer gateway update ownership params
+func (o *CustomerGatewayUpdateOwnershipParams) SetBody(body *models.V1UpdateOwnershipRequest) {
+	o.Body = body
+}
+
 // WithOwnershipID adds the ownershipID to the customer gateway update ownership params
 func (o *CustomerGatewayUpdateOwnershipParams) WithOwnershipID(ownershipID string) *CustomerGatewayUpdateOwnershipParams {
 	o.SetOwnershipID(ownershipID)
@@ -120,6 +135,12 @@ func (o *CustomerGatewayUpdateOwnershipParams) WriteToRequest(r runtime.ClientRe
 		return err
 	}
 	var res []error
+
+	if o.Body != nil {
+		if err := r.SetBodyParam(o.Body); err != nil {
+			return err
+		}
+	}
 
 	// path param ownership_id
 	if err := r.SetPathParam("ownership_id", o.OwnershipID); err != nil {

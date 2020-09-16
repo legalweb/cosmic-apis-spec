@@ -15,6 +15,68 @@
     "application/json"
   ],
   "paths": {
+    "/v1/addresses": {
+      "get": {
+        "operationId": "CustomerGateway_GetAddressHistory",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetAddressHistoryResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "tags": [
+          "CustomerGateway"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ]
+      },
+      "post": {
+        "operationId": "CustomerGateway_SetAddressHistory",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1SetAddressHistoryResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1SetAddressHistoryRequest"
+            }
+          }
+        ],
+        "tags": [
+          "CustomerGateway"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ]
+      }
+    },
     "/v1/applications": {
       "get": {
         "operationId": "CustomerGateway_ListApplications",
@@ -71,6 +133,239 @@
             "in": "path",
             "required": true,
             "type": "string"
+          }
+        ],
+        "tags": [
+          "CustomerGateway"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ]
+      }
+    },
+    "/v1/companies": {
+      "get": {
+        "operationId": "CustomerGateway_ListCompanies",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ListCompaniesResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "tags": [
+          "CustomerGateway"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ]
+      },
+      "post": {
+        "operationId": "CustomerGateway_AddCompany",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1AddCompanyResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1AddCompanyRequest"
+            }
+          }
+        ],
+        "tags": [
+          "CustomerGateway"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ]
+      }
+    },
+    "/v1/documents": {
+      "get": {
+        "operationId": "CustomerGateway_ListDocuments",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ListDocumentsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "application_name",
+            "description": "Filter down to document folders only relevant for the application\nname provided.",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          }
+        ],
+        "tags": [
+          "CustomerGateway"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ]
+      }
+    },
+    "/v1/documents/{collection_id}": {
+      "post": {
+        "operationId": "CustomerGateway_CreateUploadDocumentLink",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1CreateUploadDocumentLinkResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "collection_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1CreateUploadDocumentLinkRequest"
+            }
+          }
+        ],
+        "tags": [
+          "CustomerGateway"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ]
+      }
+    },
+    "/v1/documents/{collection_id}/{document_id}": {
+      "delete": {
+        "operationId": "CustomerGateway_DeleteDocument",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1DeleteDocumentResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "collection_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "document_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "CustomerGateway"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ]
+      },
+      "post": {
+        "operationId": "CustomerGateway_CreateDownloadDocumentLink",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1CreateDownloadDocumentLinkResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "collection_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "document_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1CreateDownloadDocumentLinkRequest"
+            }
           }
         ],
         "tags": [
@@ -201,6 +496,14 @@
             "in": "path",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1UpdateEmploymentRequest"
+            }
           }
         ],
         "tags": [
@@ -266,6 +569,18 @@
             }
           }
         },
+        "parameters": [
+          {
+            "name": "belongs_to",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          }
+        ],
         "tags": [
           "CustomerGateway"
         ],
@@ -367,8 +682,43 @@
             "in": "path",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1UpdateOwnershipRequest"
+            }
           }
         ],
+        "tags": [
+          "CustomerGateway"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ]
+      }
+    },
+    "/v1/profile": {
+      "get": {
+        "operationId": "CustomerGateway_GetProfile",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetProfileResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
         "tags": [
           "CustomerGateway"
         ],
@@ -499,7 +849,7 @@
         },
         "age_in_years": {
           "type": "integer",
-          "format": "int64"
+          "format": "int32"
         },
         "chassis_no": {
           "type": "string"
@@ -554,6 +904,27 @@
       ],
       "default": "BANK_ACCOUNT_TYPE_CURRENT_ACCOUNT"
     },
+    "CompanyTradingAddress": {
+      "type": "object",
+      "properties": {
+        "address": {
+          "$ref": "#/definitions/internalwktAddress"
+        },
+        "since": {
+          "$ref": "#/definitions/internalwktDate"
+        },
+        "is_rented": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "value": {
+          "$ref": "#/definitions/cosmicapisinternalwktMoney"
+        },
+        "outstanding": {
+          "$ref": "#/definitions/cosmicapisinternalwktMoney"
+        }
+      }
+    },
     "GenericGenericType": {
       "type": "string",
       "enum": [
@@ -586,6 +957,43 @@
         "WORKPLACE_PENSION"
       ],
       "default": "SIPP"
+    },
+    "ProfileCustodialSentence": {
+      "type": "object",
+      "properties": {
+        "start": {
+          "$ref": "#/definitions/internalwktDate",
+          "description": "The start date the defendant started their custodial sentence."
+        },
+        "nature": {
+          "type": "string",
+          "description": "The nature of the conviction."
+        },
+        "served_months": {
+          "type": "integer",
+          "format": "int32",
+          "description": "The total amount of full months served for example 4 years\n6 months would be 54.\nPlease include any suspended sentences."
+        }
+      }
+    },
+    "cosmicapisinternalwktMoney": {
+      "type": "object",
+      "properties": {
+        "currency_code": {
+          "type": "string",
+          "description": "The 3-letter currency code defined in ISO 4217."
+        },
+        "units": {
+          "type": "integer",
+          "format": "int32",
+          "description": "The whole units of the amount.\nFor example if `currencyCode` is `\"USD\"`, then 1 unit is one US dollar."
+        },
+        "nanos": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Number of nano (10^-9) units of the amount.\nThe value must be between -999,999,999 and +999,999,999 inclusive.\nIf `units` is positive, `nanos` must be positive or zero.\nIf `units` is zero, `nanos` can be positive, zero, or negative.\nIf `units` is negative, `nanos` must be negative or zero.\nFor example $-1.75 is represented as `units`=-1 and `nanos`=-750,000,000."
+        }
+      }
     },
     "customersv1Asset": {
       "type": "object",
@@ -670,6 +1078,19 @@
         }
       }
     },
+    "internalwktCompanyType": {
+      "type": "string",
+      "enum": [
+        "CT_OTHER",
+        "CT_PRIVATE_LIMITED_COMPANY",
+        "CT_PUBLIC_LIMITED_COMPANY",
+        "CT_PARTNERSHIP_LLP",
+        "CT_SOLE_TRADER",
+        "CT_CHARITY",
+        "CT_SIPP_SSAS"
+      ],
+      "default": "CT_OTHER"
+    },
     "internalwktDate": {
       "type": "object",
       "properties": {
@@ -686,6 +1107,45 @@
           "format": "int32"
         }
       }
+    },
+    "internalwktMaritalStatus": {
+      "type": "string",
+      "enum": [
+        "MS_UNKNOWN",
+        "MS_SINGLE",
+        "MS_MARRIED_OR_REMARRIED",
+        "MS_CIVIL_PARTNERSHIP",
+        "MS_SEPARATED",
+        "MS_DIVORCED_OR_WIDOWED"
+      ],
+      "default": "MS_UNKNOWN"
+    },
+    "internalwktNameTitle": {
+      "type": "string",
+      "enum": [
+        "UNKNOWN_TITLE",
+        "MR",
+        "MRS",
+        "MISS",
+        "MS",
+        "DR"
+      ],
+      "default": "UNKNOWN_TITLE"
+    },
+    "internalwktOccupancyType": {
+      "type": "string",
+      "enum": [
+        "OT_UNKOWN",
+        "OT_OWNER_WITH_MORTGAGE",
+        "OT_OWNER_WITHOUT_MORTGAGE",
+        "OT_PRIVATE_RENT",
+        "OT_LIVING_WITH_PARENTS",
+        "OT_LIVING_WITH_FRIENDS",
+        "OT_TIED_ACCOMMODATION",
+        "OT_LOCAL_AUTH_RENTING"
+      ],
+      "default": "OT_UNKOWN",
+      "title": "- OT_LOCAL_AUTH_RENTING: Local authority renting/housing association"
     },
     "protobufAny": {
       "type": "object",
@@ -748,6 +1208,12 @@
         }
       }
     },
+    "v1AddCompanyRequest": {
+      "type": "object"
+    },
+    "v1AddCompanyResponse": {
+      "type": "object"
+    },
     "v1AddEmploymentRequest": {
       "type": "object",
       "properties": {
@@ -777,6 +1243,20 @@
       "properties": {
         "ownership_id": {
           "type": "string"
+        }
+      }
+    },
+    "v1AddressHistory": {
+      "type": "object",
+      "properties": {
+        "address": {
+          "$ref": "#/definitions/internalwktAddress"
+        },
+        "since": {
+          "$ref": "#/definitions/internalwktDate"
+        },
+        "occupancy": {
+          "$ref": "#/definitions/internalwktOccupancyType"
         }
       }
     },
@@ -833,7 +1313,7 @@
         },
         "beds": {
           "type": "integer",
-          "format": "int64"
+          "format": "int32"
         }
       }
     },
@@ -853,6 +1333,76 @@
       ],
       "default": "PROPERTY_TYPE_RESIDENTIAL"
     },
+    "v1Company": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "title": "@OutputOnly"
+        },
+        "name": {
+          "type": "string",
+          "title": "The full name of the company for example:\ncompanies.cosmicapis.com/organisations/{organisationId}/companies/{companyId}"
+        },
+        "label": {
+          "type": "string",
+          "title": "The label of the company for example \"Legalwebb UK Ltd\""
+        },
+        "avatar_url": {
+          "type": "string",
+          "description": "If uploaded then a URL to the companies logo."
+        },
+        "company_number": {
+          "type": "string",
+          "description": "The company number as registered at HMRC."
+        },
+        "company_type": {
+          "$ref": "#/definitions/internalwktCompanyType",
+          "description": "The type of company according to HMRC."
+        },
+        "trading_address": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CompanyTradingAddress"
+          },
+          "description": "Trading addresses."
+        },
+        "number_of_employees": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "sic_codes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "A list of SIC code strings structured in the following way:\n\"6021:National Commercial Bank\" \"6022:State Commercial Bank\""
+        },
+        "director_failures": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "has_previous_mortgage_refusal": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "has_received_judgement_for_debt": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "has_payment_failures": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "is_trading": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "notes": {
+          "type": "string"
+        }
+      }
+    },
     "v1CompanySummary": {
       "type": "object",
       "properties": {
@@ -866,13 +1416,150 @@
         },
         "credit_score_value": {
           "type": "integer",
-          "format": "int64",
+          "format": "int32",
           "description": "The company credit score when last checked, this value is out of 999."
         },
         "credit_score_last_checked": {
           "type": "string",
           "format": "date-time",
           "description": "The last time the credit score was checked."
+        }
+      }
+    },
+    "v1CreateDownloadDocumentLinkRequest": {
+      "type": "object",
+      "properties": {
+        "collection_id": {
+          "type": "string"
+        },
+        "document_id": {
+          "type": "string"
+        }
+      }
+    },
+    "v1CreateDownloadDocumentLinkResponse": {
+      "type": "object",
+      "properties": {
+        "uri": {
+          "type": "string"
+        },
+        "expires": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "v1CreateUploadDocumentLinkRequest": {
+      "type": "object",
+      "properties": {
+        "collection_id": {
+          "type": "string"
+        },
+        "label": {
+          "type": "string"
+        }
+      }
+    },
+    "v1CreateUploadDocumentLinkResponse": {
+      "type": "object",
+      "properties": {
+        "uri": {
+          "type": "string"
+        },
+        "expires": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "v1DeleteDocumentResponse": {
+      "type": "object"
+    },
+    "v1Document": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "title": "@OutputOnly"
+        },
+        "parent": {
+          "type": "string",
+          "title": "The parent collection id.\nExample:\n- collections/{collectionId}"
+        },
+        "name": {
+          "type": "string"
+        },
+        "label": {
+          "type": "string",
+          "description": "The name of the file."
+        },
+        "size_kilobytes": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Size in kilobytes rounded up."
+        },
+        "uploaded": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "metadata": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "v1DocumentCollection": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "title": "@OutputOnly"
+        },
+        "name": {
+          "type": "string",
+          "description": "The full resource name."
+        },
+        "assigned_to": {
+          "type": "string",
+          "description": "One full example:\n- //customers.cosmicapis.com/organisations/STUB/profiles/00000000-0000-0000-0000-000000000000",
+          "title": "Resource identifier for either of the following resources:\n- customers.cosmicapis.com/Profile\n- companies.cosmicapis.com/Company"
+        },
+        "label": {
+          "type": "string",
+          "title": "The label for the collection for example \"Identification\""
+        },
+        "applications": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1DocumentCollectionApplicationLink"
+          },
+          "description": "A list of application resource identifiers that requires this\ncollection to be filled."
+        },
+        "documents": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1Document"
+          }
+        },
+        "metadata": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "v1DocumentCollectionApplicationLink": {
+      "type": "object",
+      "properties": {
+        "application": {
+          "type": "string"
+        },
+        "satisfied": {
+          "type": "boolean",
+          "format": "boolean"
         }
       }
     },
@@ -931,11 +1618,30 @@
       ],
       "default": "EMPLOYMENT_STATUS_UNKNOWN"
     },
+    "v1GetAddressHistoryResponse": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1AddressHistory"
+          }
+        }
+      }
+    },
     "v1GetApplicationResponse": {
       "type": "object",
       "properties": {
         "name": {
           "type": "string"
+        }
+      }
+    },
+    "v1GetProfileResponse": {
+      "type": "object",
+      "properties": {
+        "item": {
+          "$ref": "#/definitions/v1Profile"
         }
       }
     },
@@ -958,17 +1664,17 @@
         },
         "asset_count": {
           "type": "integer",
-          "format": "int64",
+          "format": "int32",
           "description": "The total count of assets the customer has."
         },
         "linked_accounts_packages": {
           "type": "integer",
-          "format": "int64",
+          "format": "int32",
           "description": "The total number of accounts packages the customer has linked."
         },
         "linked_bank_accounts": {
           "type": "integer",
-          "format": "int64",
+          "format": "int32",
           "description": "The total number of bank accounts the customer has linked."
         },
         "identity_is_verified": {
@@ -1010,6 +1716,28 @@
           "type": "array",
           "items": {
             "$ref": "#/definitions/v1ApplicationSummary"
+          }
+        }
+      }
+    },
+    "v1ListCompaniesResponse": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1Company"
+          }
+        }
+      }
+    },
+    "v1ListDocumentsResponse": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1DocumentCollection"
           }
         }
       }
@@ -1103,6 +1831,11 @@
           "type": "string",
           "title": "Name of the resource.\nExample: compendia.cosmicapis.com/ownerships/{ownershipId}\n@OutputOnly"
         },
+        "belongs_to": {
+          "type": "string",
+          "description": "One full example:\n- //customers.cosmicapis.com/organisations/STUB/profiles/00000000-0000-0000-0000-000000000000",
+          "title": "Resource identifier for either of the following resources\nthat the ownership belongs to:\n- customers.cosmicapis.com/Profile\n- companies.cosmicapis.com/Company"
+        },
         "asset": {
           "$ref": "#/definitions/customersv1Asset"
         },
@@ -1111,10 +1844,98 @@
         }
       }
     },
+    "v1Profile": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "title": "The unique profile identifier.\n@OutputOnly"
+        },
+        "name": {
+          "type": "string",
+          "title": "The full name for the customer profile resource.\n@OutputOnly"
+        },
+        "title": {
+          "$ref": "#/definitions/internalwktNameTitle"
+        },
+        "forenames": {
+          "type": "string"
+        },
+        "surname": {
+          "type": "string"
+        },
+        "date_of_birth": {
+          "$ref": "#/definitions/internalwktDate"
+        },
+        "nationality": {
+          "type": "string",
+          "title": "A ISO-3166 country code relating to a nationality.\nSee more: https://en.wikipedia.org/wiki/ISO_3166-1"
+        },
+        "nationality_united_kingdom_since_birth": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "national_insurance_number": {
+          "type": "string"
+        },
+        "time_in_united_kingdom_months": {
+          "type": "integer",
+          "format": "int32",
+          "description": "The total amount of full months lived in the U.K for example 4\nyears 6 months would be 54."
+        },
+        "email_address": {
+          "type": "string"
+        },
+        "phone_number_mobile": {
+          "type": "string"
+        },
+        "phone_number_home": {
+          "type": "string"
+        },
+        "phone_number_work": {
+          "type": "string"
+        },
+        "marital_status": {
+          "$ref": "#/definitions/internalwktMaritalStatus"
+        },
+        "partner_name": {
+          "type": "string"
+        },
+        "dependants": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "has_criminal_convictions": {
+          "type": "boolean",
+          "format": "boolean",
+          "title": "Has the customer had any criminal convictions for theft, fraud or dishonesty?"
+        },
+        "custodial_sentences": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ProfileCustodialSentence"
+          }
+        }
+      }
+    },
     "v1RemoveEmploymentResponse": {
       "type": "object"
     },
     "v1RemoveOwnershipResponse": {
+      "type": "object"
+    },
+    "v1SetAddressHistoryRequest": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1AddressHistory"
+          }
+        }
+      }
+    },
+    "v1SetAddressHistoryResponse": {
       "type": "object"
     },
     "v1SetNotificationPreferencesRequest": {
@@ -1131,8 +1952,30 @@
     "v1SetNotificationPreferencesResponse": {
       "type": "object"
     },
+    "v1UpdateEmploymentRequest": {
+      "type": "object",
+      "properties": {
+        "employment_id": {
+          "type": "string"
+        },
+        "item": {
+          "$ref": "#/definitions/v1Employment"
+        }
+      }
+    },
     "v1UpdateEmploymentResponse": {
       "type": "object"
+    },
+    "v1UpdateOwnershipRequest": {
+      "type": "object",
+      "properties": {
+        "ownership_id": {
+          "type": "string"
+        },
+        "item": {
+          "$ref": "#/definitions/v1Ownership"
+        }
+      }
     },
     "v1UpdateOwnershipResponse": {
       "type": "object"

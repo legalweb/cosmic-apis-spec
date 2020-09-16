@@ -23,6 +23,9 @@ type V1LoginResponse struct {
 	// email address
 	EmailAddress string `json:"email_address,omitempty"`
 
+	// expires
+	Expires int32 `json:"expires,omitempty"`
+
 	// organisations
 	Organisations []*V1LoginResponseOrganisationAccess `json:"organisations"`
 

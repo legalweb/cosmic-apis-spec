@@ -21,7 +21,7 @@ type V1GetSummaryResponse struct {
 	Applications []*V1ApplicationSummary `json:"applications"`
 
 	// The total count of assets the customer has.
-	AssetCount int64 `json:"asset_count,omitempty"`
+	AssetCount int32 `json:"asset_count,omitempty"`
 
 	// All the companies the customer is linked too.
 	Companies []*V1CompanySummary `json:"companies"`
@@ -30,10 +30,10 @@ type V1GetSummaryResponse struct {
 	IdentityIsVerified bool `json:"identity_is_verified,omitempty"`
 
 	// The total number of accounts packages the customer has linked.
-	LinkedAccountsPackages int64 `json:"linked_accounts_packages,omitempty"`
+	LinkedAccountsPackages int32 `json:"linked_accounts_packages,omitempty"`
 
 	// The total number of bank accounts the customer has linked.
-	LinkedBankAccounts int64 `json:"linked_bank_accounts,omitempty"`
+	LinkedBankAccounts int32 `json:"linked_bank_accounts,omitempty"`
 
 	// The total net-worth of the customer.
 	NetWorth *GoogletypeMoney `json:"net_worth,omitempty"`

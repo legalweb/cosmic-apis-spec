@@ -19,7 +19,7 @@ type V1AssetProperty struct {
 	Address *InternalwktAddress `json:"address,omitempty"`
 
 	// beds
-	Beds int64 `json:"beds,omitempty"`
+	Beds int32 `json:"beds,omitempty"`
 
 	// When true the property type MUST be PROPERTY_TYPE_RESIDENTIAL.
 	IsOwnHome bool `json:"is_own_home,omitempty"`

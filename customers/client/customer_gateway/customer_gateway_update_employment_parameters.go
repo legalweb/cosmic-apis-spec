@@ -15,6 +15,8 @@ import (
 	cr "github.com/go-openapi/runtime/client"
 
 	strfmt "github.com/go-openapi/strfmt"
+
+	"lwebco.de/cosmic-apis-spec/customers/models"
 )
 
 // NewCustomerGatewayUpdateEmploymentParams creates a new CustomerGatewayUpdateEmploymentParams object
@@ -61,6 +63,8 @@ for the customer gateway update employment operation typically these are written
 */
 type CustomerGatewayUpdateEmploymentParams struct {
 
+	/*Body*/
+	Body *models.V1UpdateEmploymentRequest
 	/*EmploymentID*/
 	EmploymentID string
 
@@ -102,6 +106,17 @@ func (o *CustomerGatewayUpdateEmploymentParams) SetHTTPClient(client *http.Clien
 	o.HTTPClient = client
 }
 
+// WithBody adds the body to the customer gateway update employment params
+func (o *CustomerGatewayUpdateEmploymentParams) WithBody(body *models.V1UpdateEmploymentRequest) *CustomerGatewayUpdateEmploymentParams {
+	o.SetBody(body)
+	return o
+}
+
+// SetBody adds the body to the customer gateway update employment params
+func (o *CustomerGatewayUpdateEmploymentParams) SetBody(body *models.V1UpdateEmploymentRequest) {
+	o.Body = body
+}
+
 // WithEmploymentID adds the employmentID to the customer gateway update employment params
 func (o *CustomerGatewayUpdateEmploymentParams) WithEmploymentID(employmentID string) *CustomerGatewayUpdateEmploymentParams {
 	o.SetEmploymentID(employmentID)
@@ -120,6 +135,12 @@ func (o *CustomerGatewayUpdateEmploymentParams) WriteToRequest(r runtime.ClientR
 		return err
 	}
 	var res []error
+
+	if o.Body != nil {
+		if err := r.SetBodyParam(o.Body); err != nil {
+			return err
+		}
+	}
 
 	// path param employment_id
 	if err := r.SetPathParam("employment_id", o.EmploymentID); err != nil {

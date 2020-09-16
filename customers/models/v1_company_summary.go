@@ -21,7 +21,7 @@ type V1CompanySummary struct {
 	CreditScoreLastChecked strfmt.DateTime `json:"credit_score_last_checked,omitempty"`
 
 	// The company credit score when last checked, this value is out of 999.
-	CreditScoreValue int64 `json:"credit_score_value,omitempty"`
+	CreditScoreValue int32 `json:"credit_score_value,omitempty"`
 
 	// The label of the company for example "Legalwebb UK Ltd"
 	Label string `json:"label,omitempty"`

@@ -6,8 +6,6 @@ package identities
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"fmt"
-
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
 )
@@ -27,63 +25,63 @@ type Client struct {
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	AddOrganisationMember(params *AddOrganisationMemberParams, authInfo runtime.ClientAuthInfoWriter) (*AddOrganisationMemberOK, error)
+	IdentitiesAddOrganisationMember(params *IdentitiesAddOrganisationMemberParams, authInfo runtime.ClientAuthInfoWriter) (*IdentitiesAddOrganisationMemberOK, error)
 
-	CreateAccount(params *CreateAccountParams) (*CreateAccountOK, error)
+	IdentitiesCreateAccount(params *IdentitiesCreateAccountParams) (*IdentitiesCreateAccountOK, error)
 
-	CreateOrganisation(params *CreateOrganisationParams, authInfo runtime.ClientAuthInfoWriter) (*CreateOrganisationOK, error)
+	IdentitiesCreateOrganisation(params *IdentitiesCreateOrganisationParams, authInfo runtime.ClientAuthInfoWriter) (*IdentitiesCreateOrganisationOK, error)
 
-	DoResetPassword(params *DoResetPasswordParams) (*DoResetPasswordOK, error)
+	IdentitiesDoResetPassword(params *IdentitiesDoResetPasswordParams) (*IdentitiesDoResetPasswordOK, error)
 
-	GetAccount(params *GetAccountParams, authInfo runtime.ClientAuthInfoWriter) (*GetAccountOK, error)
+	IdentitiesGetAccount(params *IdentitiesGetAccountParams, authInfo runtime.ClientAuthInfoWriter) (*IdentitiesGetAccountOK, error)
 
-	GetOrganisation(params *GetOrganisationParams, authInfo runtime.ClientAuthInfoWriter) (*GetOrganisationOK, error)
+	IdentitiesGetOrganisation(params *IdentitiesGetOrganisationParams, authInfo runtime.ClientAuthInfoWriter) (*IdentitiesGetOrganisationOK, error)
 
-	Login(params *LoginParams) (*LoginOK, error)
+	IdentitiesLogin(params *IdentitiesLoginParams) (*IdentitiesLoginOK, error)
 
-	QueryAccountMemberships(params *QueryAccountMembershipsParams, authInfo runtime.ClientAuthInfoWriter) (*QueryAccountMembershipsOK, error)
+	IdentitiesQueryAccountMemberships(params *IdentitiesQueryAccountMembershipsParams, authInfo runtime.ClientAuthInfoWriter) (*IdentitiesQueryAccountMembershipsOK, error)
 
-	QueryAccounts(params *QueryAccountsParams, authInfo runtime.ClientAuthInfoWriter) (*QueryAccountsOK, error)
+	IdentitiesQueryAccounts(params *IdentitiesQueryAccountsParams, authInfo runtime.ClientAuthInfoWriter) (*IdentitiesQueryAccountsOK, error)
 
-	QueryOrganisations(params *QueryOrganisationsParams, authInfo runtime.ClientAuthInfoWriter) (*QueryOrganisationsOK, error)
+	IdentitiesQueryOrganisations(params *IdentitiesQueryOrganisationsParams, authInfo runtime.ClientAuthInfoWriter) (*IdentitiesQueryOrganisationsOK, error)
 
-	RemoveOrganisationMember(params *RemoveOrganisationMemberParams, authInfo runtime.ClientAuthInfoWriter) (*RemoveOrganisationMemberOK, error)
+	IdentitiesRemoveOrganisationMember(params *IdentitiesRemoveOrganisationMemberParams, authInfo runtime.ClientAuthInfoWriter) (*IdentitiesRemoveOrganisationMemberOK, error)
 
-	SendResetPassword(params *SendResetPasswordParams) (*SendResetPasswordOK, error)
+	IdentitiesSendResetPassword(params *IdentitiesSendResetPasswordParams) (*IdentitiesSendResetPasswordOK, error)
 
-	SetOrganisationStatus(params *SetOrganisationStatusParams, authInfo runtime.ClientAuthInfoWriter) (*SetOrganisationStatusOK, error)
+	IdentitiesSetOrganisationStatus(params *IdentitiesSetOrganisationStatusParams, authInfo runtime.ClientAuthInfoWriter) (*IdentitiesSetOrganisationStatusOK, error)
 
-	TokenCheck(params *TokenCheckParams) (*TokenCheckOK, error)
+	IdentitiesTokenCheck(params *IdentitiesTokenCheckParams) (*IdentitiesTokenCheckOK, error)
 
-	TokenRenew(params *TokenRenewParams) (*TokenRenewOK, error)
+	IdentitiesTokenRenew(params *IdentitiesTokenRenewParams) (*IdentitiesTokenRenewOK, error)
 
-	UpdateAccountDetails(params *UpdateAccountDetailsParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateAccountDetailsOK, error)
+	IdentitiesUpdateAccountDetails(params *IdentitiesUpdateAccountDetailsParams, authInfo runtime.ClientAuthInfoWriter) (*IdentitiesUpdateAccountDetailsOK, error)
 
-	UpdateAccountPassword(params *UpdateAccountPasswordParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateAccountPasswordOK, error)
+	IdentitiesUpdateAccountPassword(params *IdentitiesUpdateAccountPasswordParams, authInfo runtime.ClientAuthInfoWriter) (*IdentitiesUpdateAccountPasswordOK, error)
 
-	UpdateOrganisation(params *UpdateOrganisationParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateOrganisationOK, error)
+	IdentitiesUpdateOrganisation(params *IdentitiesUpdateOrganisationParams, authInfo runtime.ClientAuthInfoWriter) (*IdentitiesUpdateOrganisationOK, error)
 
 	SetTransport(transport runtime.ClientTransport)
 }
 
 /*
-  AddOrganisationMember add organisation member API
+  IdentitiesAddOrganisationMember identities add organisation member API
 */
-func (a *Client) AddOrganisationMember(params *AddOrganisationMemberParams, authInfo runtime.ClientAuthInfoWriter) (*AddOrganisationMemberOK, error) {
+func (a *Client) IdentitiesAddOrganisationMember(params *IdentitiesAddOrganisationMemberParams, authInfo runtime.ClientAuthInfoWriter) (*IdentitiesAddOrganisationMemberOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewAddOrganisationMemberParams()
+		params = NewIdentitiesAddOrganisationMemberParams()
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "AddOrganisationMember",
+		ID:                 "Identities_AddOrganisationMember",
 		Method:             "POST",
 		PathPattern:        "/v1/organisations/{organisation_id}/members",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &AddOrganisationMemberReader{formats: a.formats},
+		Reader:             &IdentitiesAddOrganisationMemberReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -91,68 +89,66 @@ func (a *Client) AddOrganisationMember(params *AddOrganisationMemberParams, auth
 	if err != nil {
 		return nil, err
 	}
-	success, ok := result.(*AddOrganisationMemberOK)
+	success, ok := result.(*IdentitiesAddOrganisationMemberOK)
 	if ok {
 		return success, nil
 	}
 	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for AddOrganisationMember: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
+	unexpectedSuccess := result.(*IdentitiesAddOrganisationMemberDefault)
+	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
 }
 
 /*
-  CreateAccount create account API
+  IdentitiesCreateAccount identities create account API
 */
-func (a *Client) CreateAccount(params *CreateAccountParams) (*CreateAccountOK, error) {
+func (a *Client) IdentitiesCreateAccount(params *IdentitiesCreateAccountParams) (*IdentitiesCreateAccountOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewCreateAccountParams()
+		params = NewIdentitiesCreateAccountParams()
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "CreateAccount",
+		ID:                 "Identities_CreateAccount",
 		Method:             "POST",
 		PathPattern:        "/v1/accounts",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &CreateAccountReader{formats: a.formats},
+		Reader:             &IdentitiesCreateAccountReader{formats: a.formats},
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
 		return nil, err
 	}
-	success, ok := result.(*CreateAccountOK)
+	success, ok := result.(*IdentitiesCreateAccountOK)
 	if ok {
 		return success, nil
 	}
 	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for CreateAccount: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
+	unexpectedSuccess := result.(*IdentitiesCreateAccountDefault)
+	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
 }
 
 /*
-  CreateOrganisation create organisation API
+  IdentitiesCreateOrganisation identities create organisation API
 */
-func (a *Client) CreateOrganisation(params *CreateOrganisationParams, authInfo runtime.ClientAuthInfoWriter) (*CreateOrganisationOK, error) {
+func (a *Client) IdentitiesCreateOrganisation(params *IdentitiesCreateOrganisationParams, authInfo runtime.ClientAuthInfoWriter) (*IdentitiesCreateOrganisationOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewCreateOrganisationParams()
+		params = NewIdentitiesCreateOrganisationParams()
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "CreateOrganisation",
+		ID:                 "Identities_CreateOrganisation",
 		Method:             "POST",
 		PathPattern:        "/v1/organisations",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &CreateOrganisationReader{formats: a.formats},
+		Reader:             &IdentitiesCreateOrganisationReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -160,68 +156,66 @@ func (a *Client) CreateOrganisation(params *CreateOrganisationParams, authInfo r
 	if err != nil {
 		return nil, err
 	}
-	success, ok := result.(*CreateOrganisationOK)
+	success, ok := result.(*IdentitiesCreateOrganisationOK)
 	if ok {
 		return success, nil
 	}
 	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for CreateOrganisation: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
+	unexpectedSuccess := result.(*IdentitiesCreateOrganisationDefault)
+	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
 }
 
 /*
-  DoResetPassword do reset password API
+  IdentitiesDoResetPassword identities do reset password API
 */
-func (a *Client) DoResetPassword(params *DoResetPasswordParams) (*DoResetPasswordOK, error) {
+func (a *Client) IdentitiesDoResetPassword(params *IdentitiesDoResetPasswordParams) (*IdentitiesDoResetPasswordOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewDoResetPasswordParams()
+		params = NewIdentitiesDoResetPasswordParams()
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "DoResetPassword",
+		ID:                 "Identities_DoResetPassword",
 		Method:             "POST",
 		PathPattern:        "/v1/users/reset",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &DoResetPasswordReader{formats: a.formats},
+		Reader:             &IdentitiesDoResetPasswordReader{formats: a.formats},
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
 		return nil, err
 	}
-	success, ok := result.(*DoResetPasswordOK)
+	success, ok := result.(*IdentitiesDoResetPasswordOK)
 	if ok {
 		return success, nil
 	}
 	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for DoResetPassword: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
+	unexpectedSuccess := result.(*IdentitiesDoResetPasswordDefault)
+	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
 }
 
 /*
-  GetAccount get account API
+  IdentitiesGetAccount identities get account API
 */
-func (a *Client) GetAccount(params *GetAccountParams, authInfo runtime.ClientAuthInfoWriter) (*GetAccountOK, error) {
+func (a *Client) IdentitiesGetAccount(params *IdentitiesGetAccountParams, authInfo runtime.ClientAuthInfoWriter) (*IdentitiesGetAccountOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewGetAccountParams()
+		params = NewIdentitiesGetAccountParams()
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "GetAccount",
+		ID:                 "Identities_GetAccount",
 		Method:             "GET",
 		PathPattern:        "/v1/accounts/{account_id}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &GetAccountReader{formats: a.formats},
+		Reader:             &IdentitiesGetAccountReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -229,34 +223,33 @@ func (a *Client) GetAccount(params *GetAccountParams, authInfo runtime.ClientAut
 	if err != nil {
 		return nil, err
 	}
-	success, ok := result.(*GetAccountOK)
+	success, ok := result.(*IdentitiesGetAccountOK)
 	if ok {
 		return success, nil
 	}
 	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for GetAccount: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
+	unexpectedSuccess := result.(*IdentitiesGetAccountDefault)
+	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
 }
 
 /*
-  GetOrganisation get organisation API
+  IdentitiesGetOrganisation identities get organisation API
 */
-func (a *Client) GetOrganisation(params *GetOrganisationParams, authInfo runtime.ClientAuthInfoWriter) (*GetOrganisationOK, error) {
+func (a *Client) IdentitiesGetOrganisation(params *IdentitiesGetOrganisationParams, authInfo runtime.ClientAuthInfoWriter) (*IdentitiesGetOrganisationOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewGetOrganisationParams()
+		params = NewIdentitiesGetOrganisationParams()
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "GetOrganisation",
+		ID:                 "Identities_GetOrganisation",
 		Method:             "GET",
 		PathPattern:        "/v1/organisations/{organisation_id}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &GetOrganisationReader{formats: a.formats},
+		Reader:             &IdentitiesGetOrganisationReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -264,68 +257,66 @@ func (a *Client) GetOrganisation(params *GetOrganisationParams, authInfo runtime
 	if err != nil {
 		return nil, err
 	}
-	success, ok := result.(*GetOrganisationOK)
+	success, ok := result.(*IdentitiesGetOrganisationOK)
 	if ok {
 		return success, nil
 	}
 	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for GetOrganisation: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
+	unexpectedSuccess := result.(*IdentitiesGetOrganisationDefault)
+	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
 }
 
 /*
-  Login login API
+  IdentitiesLogin identities login API
 */
-func (a *Client) Login(params *LoginParams) (*LoginOK, error) {
+func (a *Client) IdentitiesLogin(params *IdentitiesLoginParams) (*IdentitiesLoginOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewLoginParams()
+		params = NewIdentitiesLoginParams()
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "Login",
+		ID:                 "Identities_Login",
 		Method:             "POST",
 		PathPattern:        "/v1/login",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &LoginReader{formats: a.formats},
+		Reader:             &IdentitiesLoginReader{formats: a.formats},
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
 		return nil, err
 	}
-	success, ok := result.(*LoginOK)
+	success, ok := result.(*IdentitiesLoginOK)
 	if ok {
 		return success, nil
 	}
 	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for Login: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
+	unexpectedSuccess := result.(*IdentitiesLoginDefault)
+	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
 }
 
 /*
-  QueryAccountMemberships query account memberships API
+  IdentitiesQueryAccountMemberships identities query account memberships API
 */
-func (a *Client) QueryAccountMemberships(params *QueryAccountMembershipsParams, authInfo runtime.ClientAuthInfoWriter) (*QueryAccountMembershipsOK, error) {
+func (a *Client) IdentitiesQueryAccountMemberships(params *IdentitiesQueryAccountMembershipsParams, authInfo runtime.ClientAuthInfoWriter) (*IdentitiesQueryAccountMembershipsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewQueryAccountMembershipsParams()
+		params = NewIdentitiesQueryAccountMembershipsParams()
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "QueryAccountMemberships",
+		ID:                 "Identities_QueryAccountMemberships",
 		Method:             "GET",
 		PathPattern:        "/v1/orgmemberships",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &QueryAccountMembershipsReader{formats: a.formats},
+		Reader:             &IdentitiesQueryAccountMembershipsReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -333,34 +324,33 @@ func (a *Client) QueryAccountMemberships(params *QueryAccountMembershipsParams, 
 	if err != nil {
 		return nil, err
 	}
-	success, ok := result.(*QueryAccountMembershipsOK)
+	success, ok := result.(*IdentitiesQueryAccountMembershipsOK)
 	if ok {
 		return success, nil
 	}
 	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for QueryAccountMemberships: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
+	unexpectedSuccess := result.(*IdentitiesQueryAccountMembershipsDefault)
+	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
 }
 
 /*
-  QueryAccounts query accounts API
+  IdentitiesQueryAccounts identities query accounts API
 */
-func (a *Client) QueryAccounts(params *QueryAccountsParams, authInfo runtime.ClientAuthInfoWriter) (*QueryAccountsOK, error) {
+func (a *Client) IdentitiesQueryAccounts(params *IdentitiesQueryAccountsParams, authInfo runtime.ClientAuthInfoWriter) (*IdentitiesQueryAccountsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewQueryAccountsParams()
+		params = NewIdentitiesQueryAccountsParams()
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "QueryAccounts",
+		ID:                 "Identities_QueryAccounts",
 		Method:             "GET",
 		PathPattern:        "/v1/accounts",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &QueryAccountsReader{formats: a.formats},
+		Reader:             &IdentitiesQueryAccountsReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -368,34 +358,33 @@ func (a *Client) QueryAccounts(params *QueryAccountsParams, authInfo runtime.Cli
 	if err != nil {
 		return nil, err
 	}
-	success, ok := result.(*QueryAccountsOK)
+	success, ok := result.(*IdentitiesQueryAccountsOK)
 	if ok {
 		return success, nil
 	}
 	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for QueryAccounts: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
+	unexpectedSuccess := result.(*IdentitiesQueryAccountsDefault)
+	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
 }
 
 /*
-  QueryOrganisations query organisations API
+  IdentitiesQueryOrganisations identities query organisations API
 */
-func (a *Client) QueryOrganisations(params *QueryOrganisationsParams, authInfo runtime.ClientAuthInfoWriter) (*QueryOrganisationsOK, error) {
+func (a *Client) IdentitiesQueryOrganisations(params *IdentitiesQueryOrganisationsParams, authInfo runtime.ClientAuthInfoWriter) (*IdentitiesQueryOrganisationsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewQueryOrganisationsParams()
+		params = NewIdentitiesQueryOrganisationsParams()
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "QueryOrganisations",
+		ID:                 "Identities_QueryOrganisations",
 		Method:             "GET",
 		PathPattern:        "/v1/organisations",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &QueryOrganisationsReader{formats: a.formats},
+		Reader:             &IdentitiesQueryOrganisationsReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -403,34 +392,33 @@ func (a *Client) QueryOrganisations(params *QueryOrganisationsParams, authInfo r
 	if err != nil {
 		return nil, err
 	}
-	success, ok := result.(*QueryOrganisationsOK)
+	success, ok := result.(*IdentitiesQueryOrganisationsOK)
 	if ok {
 		return success, nil
 	}
 	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for QueryOrganisations: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
+	unexpectedSuccess := result.(*IdentitiesQueryOrganisationsDefault)
+	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
 }
 
 /*
-  RemoveOrganisationMember remove organisation member API
+  IdentitiesRemoveOrganisationMember identities remove organisation member API
 */
-func (a *Client) RemoveOrganisationMember(params *RemoveOrganisationMemberParams, authInfo runtime.ClientAuthInfoWriter) (*RemoveOrganisationMemberOK, error) {
+func (a *Client) IdentitiesRemoveOrganisationMember(params *IdentitiesRemoveOrganisationMemberParams, authInfo runtime.ClientAuthInfoWriter) (*IdentitiesRemoveOrganisationMemberOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewRemoveOrganisationMemberParams()
+		params = NewIdentitiesRemoveOrganisationMemberParams()
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "RemoveOrganisationMember",
+		ID:                 "Identities_RemoveOrganisationMember",
 		Method:             "DELETE",
 		PathPattern:        "/v1/organisations/{organisation_id}/members/{account_id}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &RemoveOrganisationMemberReader{formats: a.formats},
+		Reader:             &IdentitiesRemoveOrganisationMemberReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -438,68 +426,66 @@ func (a *Client) RemoveOrganisationMember(params *RemoveOrganisationMemberParams
 	if err != nil {
 		return nil, err
 	}
-	success, ok := result.(*RemoveOrganisationMemberOK)
+	success, ok := result.(*IdentitiesRemoveOrganisationMemberOK)
 	if ok {
 		return success, nil
 	}
 	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for RemoveOrganisationMember: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
+	unexpectedSuccess := result.(*IdentitiesRemoveOrganisationMemberDefault)
+	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
 }
 
 /*
-  SendResetPassword send reset password API
+  IdentitiesSendResetPassword identities send reset password API
 */
-func (a *Client) SendResetPassword(params *SendResetPasswordParams) (*SendResetPasswordOK, error) {
+func (a *Client) IdentitiesSendResetPassword(params *IdentitiesSendResetPasswordParams) (*IdentitiesSendResetPasswordOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewSendResetPasswordParams()
+		params = NewIdentitiesSendResetPasswordParams()
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "SendResetPassword",
+		ID:                 "Identities_SendResetPassword",
 		Method:             "POST",
 		PathPattern:        "/v1/users/send-reset",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &SendResetPasswordReader{formats: a.formats},
+		Reader:             &IdentitiesSendResetPasswordReader{formats: a.formats},
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
 		return nil, err
 	}
-	success, ok := result.(*SendResetPasswordOK)
+	success, ok := result.(*IdentitiesSendResetPasswordOK)
 	if ok {
 		return success, nil
 	}
 	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for SendResetPassword: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
+	unexpectedSuccess := result.(*IdentitiesSendResetPasswordDefault)
+	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
 }
 
 /*
-  SetOrganisationStatus set organisation status API
+  IdentitiesSetOrganisationStatus identities set organisation status API
 */
-func (a *Client) SetOrganisationStatus(params *SetOrganisationStatusParams, authInfo runtime.ClientAuthInfoWriter) (*SetOrganisationStatusOK, error) {
+func (a *Client) IdentitiesSetOrganisationStatus(params *IdentitiesSetOrganisationStatusParams, authInfo runtime.ClientAuthInfoWriter) (*IdentitiesSetOrganisationStatusOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewSetOrganisationStatusParams()
+		params = NewIdentitiesSetOrganisationStatusParams()
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "SetOrganisationStatus",
+		ID:                 "Identities_SetOrganisationStatus",
 		Method:             "POST",
 		PathPattern:        "/v1/organisations/{organisation_id}/status",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &SetOrganisationStatusReader{formats: a.formats},
+		Reader:             &IdentitiesSetOrganisationStatusReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -507,102 +493,99 @@ func (a *Client) SetOrganisationStatus(params *SetOrganisationStatusParams, auth
 	if err != nil {
 		return nil, err
 	}
-	success, ok := result.(*SetOrganisationStatusOK)
+	success, ok := result.(*IdentitiesSetOrganisationStatusOK)
 	if ok {
 		return success, nil
 	}
 	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for SetOrganisationStatus: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
+	unexpectedSuccess := result.(*IdentitiesSetOrganisationStatusDefault)
+	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
 }
 
 /*
-  TokenCheck token check API
+  IdentitiesTokenCheck identities token check API
 */
-func (a *Client) TokenCheck(params *TokenCheckParams) (*TokenCheckOK, error) {
+func (a *Client) IdentitiesTokenCheck(params *IdentitiesTokenCheckParams) (*IdentitiesTokenCheckOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewTokenCheckParams()
+		params = NewIdentitiesTokenCheckParams()
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "TokenCheck",
+		ID:                 "Identities_TokenCheck",
 		Method:             "POST",
 		PathPattern:        "/v1/token/check",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &TokenCheckReader{formats: a.formats},
+		Reader:             &IdentitiesTokenCheckReader{formats: a.formats},
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
 		return nil, err
 	}
-	success, ok := result.(*TokenCheckOK)
+	success, ok := result.(*IdentitiesTokenCheckOK)
 	if ok {
 		return success, nil
 	}
 	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for TokenCheck: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
+	unexpectedSuccess := result.(*IdentitiesTokenCheckDefault)
+	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
 }
 
 /*
-  TokenRenew token renew API
+  IdentitiesTokenRenew identities token renew API
 */
-func (a *Client) TokenRenew(params *TokenRenewParams) (*TokenRenewOK, error) {
+func (a *Client) IdentitiesTokenRenew(params *IdentitiesTokenRenewParams) (*IdentitiesTokenRenewOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewTokenRenewParams()
+		params = NewIdentitiesTokenRenewParams()
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "TokenRenew",
+		ID:                 "Identities_TokenRenew",
 		Method:             "POST",
 		PathPattern:        "/v1/token/renew",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &TokenRenewReader{formats: a.formats},
+		Reader:             &IdentitiesTokenRenewReader{formats: a.formats},
 		Context:            params.Context,
 		Client:             params.HTTPClient,
 	})
 	if err != nil {
 		return nil, err
 	}
-	success, ok := result.(*TokenRenewOK)
+	success, ok := result.(*IdentitiesTokenRenewOK)
 	if ok {
 		return success, nil
 	}
 	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for TokenRenew: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
+	unexpectedSuccess := result.(*IdentitiesTokenRenewDefault)
+	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
 }
 
 /*
-  UpdateAccountDetails update account details API
+  IdentitiesUpdateAccountDetails identities update account details API
 */
-func (a *Client) UpdateAccountDetails(params *UpdateAccountDetailsParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateAccountDetailsOK, error) {
+func (a *Client) IdentitiesUpdateAccountDetails(params *IdentitiesUpdateAccountDetailsParams, authInfo runtime.ClientAuthInfoWriter) (*IdentitiesUpdateAccountDetailsOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewUpdateAccountDetailsParams()
+		params = NewIdentitiesUpdateAccountDetailsParams()
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "UpdateAccountDetails",
+		ID:                 "Identities_UpdateAccountDetails",
 		Method:             "POST",
 		PathPattern:        "/v1/accounts/{account_id}/update_details",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &UpdateAccountDetailsReader{formats: a.formats},
+		Reader:             &IdentitiesUpdateAccountDetailsReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -610,34 +593,33 @@ func (a *Client) UpdateAccountDetails(params *UpdateAccountDetailsParams, authIn
 	if err != nil {
 		return nil, err
 	}
-	success, ok := result.(*UpdateAccountDetailsOK)
+	success, ok := result.(*IdentitiesUpdateAccountDetailsOK)
 	if ok {
 		return success, nil
 	}
 	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for UpdateAccountDetails: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
+	unexpectedSuccess := result.(*IdentitiesUpdateAccountDetailsDefault)
+	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
 }
 
 /*
-  UpdateAccountPassword update account password API
+  IdentitiesUpdateAccountPassword identities update account password API
 */
-func (a *Client) UpdateAccountPassword(params *UpdateAccountPasswordParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateAccountPasswordOK, error) {
+func (a *Client) IdentitiesUpdateAccountPassword(params *IdentitiesUpdateAccountPasswordParams, authInfo runtime.ClientAuthInfoWriter) (*IdentitiesUpdateAccountPasswordOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewUpdateAccountPasswordParams()
+		params = NewIdentitiesUpdateAccountPasswordParams()
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "UpdateAccountPassword",
+		ID:                 "Identities_UpdateAccountPassword",
 		Method:             "POST",
 		PathPattern:        "/v1/accounts/{account_id}/change_password",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &UpdateAccountPasswordReader{formats: a.formats},
+		Reader:             &IdentitiesUpdateAccountPasswordReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -645,34 +627,33 @@ func (a *Client) UpdateAccountPassword(params *UpdateAccountPasswordParams, auth
 	if err != nil {
 		return nil, err
 	}
-	success, ok := result.(*UpdateAccountPasswordOK)
+	success, ok := result.(*IdentitiesUpdateAccountPasswordOK)
 	if ok {
 		return success, nil
 	}
 	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for UpdateAccountPassword: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
+	unexpectedSuccess := result.(*IdentitiesUpdateAccountPasswordDefault)
+	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
 }
 
 /*
-  UpdateOrganisation update organisation API
+  IdentitiesUpdateOrganisation identities update organisation API
 */
-func (a *Client) UpdateOrganisation(params *UpdateOrganisationParams, authInfo runtime.ClientAuthInfoWriter) (*UpdateOrganisationOK, error) {
+func (a *Client) IdentitiesUpdateOrganisation(params *IdentitiesUpdateOrganisationParams, authInfo runtime.ClientAuthInfoWriter) (*IdentitiesUpdateOrganisationOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewUpdateOrganisationParams()
+		params = NewIdentitiesUpdateOrganisationParams()
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "UpdateOrganisation",
+		ID:                 "Identities_UpdateOrganisation",
 		Method:             "POST",
 		PathPattern:        "/v1/organisations/{organisation_id}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &UpdateOrganisationReader{formats: a.formats},
+		Reader:             &IdentitiesUpdateOrganisationReader{formats: a.formats},
 		AuthInfo:           authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -680,14 +661,13 @@ func (a *Client) UpdateOrganisation(params *UpdateOrganisationParams, authInfo r
 	if err != nil {
 		return nil, err
 	}
-	success, ok := result.(*UpdateOrganisationOK)
+	success, ok := result.(*IdentitiesUpdateOrganisationOK)
 	if ok {
 		return success, nil
 	}
 	// unexpected success response
-	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
-	msg := fmt.Sprintf("unexpected success response for UpdateOrganisation: API contract not enforced by server. Client expected to get an error, but got: %T", result)
-	panic(msg)
+	unexpectedSuccess := result.(*IdentitiesUpdateOrganisationDefault)
+	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
 }
 
 // SetTransport changes the transport on the client

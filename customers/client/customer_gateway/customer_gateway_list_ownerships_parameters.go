@@ -13,6 +13,7 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
+	"github.com/go-openapi/swag"
 
 	strfmt "github.com/go-openapi/strfmt"
 )
@@ -20,7 +21,7 @@ import (
 // NewCustomerGatewayListOwnershipsParams creates a new CustomerGatewayListOwnershipsParams object
 // with the default values initialized.
 func NewCustomerGatewayListOwnershipsParams() *CustomerGatewayListOwnershipsParams {
-
+	var ()
 	return &CustomerGatewayListOwnershipsParams{
 
 		timeout: cr.DefaultTimeout,
@@ -30,7 +31,7 @@ func NewCustomerGatewayListOwnershipsParams() *CustomerGatewayListOwnershipsPara
 // NewCustomerGatewayListOwnershipsParamsWithTimeout creates a new CustomerGatewayListOwnershipsParams object
 // with the default values initialized, and the ability to set a timeout on a request
 func NewCustomerGatewayListOwnershipsParamsWithTimeout(timeout time.Duration) *CustomerGatewayListOwnershipsParams {
-
+	var ()
 	return &CustomerGatewayListOwnershipsParams{
 
 		timeout: timeout,
@@ -40,7 +41,7 @@ func NewCustomerGatewayListOwnershipsParamsWithTimeout(timeout time.Duration) *C
 // NewCustomerGatewayListOwnershipsParamsWithContext creates a new CustomerGatewayListOwnershipsParams object
 // with the default values initialized, and the ability to set a context for a request
 func NewCustomerGatewayListOwnershipsParamsWithContext(ctx context.Context) *CustomerGatewayListOwnershipsParams {
-
+	var ()
 	return &CustomerGatewayListOwnershipsParams{
 
 		Context: ctx,
@@ -50,7 +51,7 @@ func NewCustomerGatewayListOwnershipsParamsWithContext(ctx context.Context) *Cus
 // NewCustomerGatewayListOwnershipsParamsWithHTTPClient creates a new CustomerGatewayListOwnershipsParams object
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewCustomerGatewayListOwnershipsParamsWithHTTPClient(client *http.Client) *CustomerGatewayListOwnershipsParams {
-
+	var ()
 	return &CustomerGatewayListOwnershipsParams{
 		HTTPClient: client,
 	}
@@ -60,6 +61,10 @@ func NewCustomerGatewayListOwnershipsParamsWithHTTPClient(client *http.Client) *
 for the customer gateway list ownerships operation typically these are written to a http.Request
 */
 type CustomerGatewayListOwnershipsParams struct {
+
+	/*BelongsTo*/
+	BelongsTo []string
+
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
@@ -98,6 +103,17 @@ func (o *CustomerGatewayListOwnershipsParams) SetHTTPClient(client *http.Client)
 	o.HTTPClient = client
 }
 
+// WithBelongsTo adds the belongsTo to the customer gateway list ownerships params
+func (o *CustomerGatewayListOwnershipsParams) WithBelongsTo(belongsTo []string) *CustomerGatewayListOwnershipsParams {
+	o.SetBelongsTo(belongsTo)
+	return o
+}
+
+// SetBelongsTo adds the belongsTo to the customer gateway list ownerships params
+func (o *CustomerGatewayListOwnershipsParams) SetBelongsTo(belongsTo []string) {
+	o.BelongsTo = belongsTo
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *CustomerGatewayListOwnershipsParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -105,6 +121,14 @@ func (o *CustomerGatewayListOwnershipsParams) WriteToRequest(r runtime.ClientReq
 		return err
 	}
 	var res []error
+
+	valuesBelongsTo := o.BelongsTo
+
+	joinedBelongsTo := swag.JoinByFormat(valuesBelongsTo, "multi")
+	// query array param belongs_to
+	if err := r.SetQueryParam("belongs_to", joinedBelongsTo...); err != nil {
+		return err
+	}
 
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)

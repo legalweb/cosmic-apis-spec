@@ -18,7 +18,7 @@ import (
 type AssetGeneric struct {
 
 	// age in years
-	AgeInYears int64 `json:"age_in_years,omitempty"`
+	AgeInYears int32 `json:"age_in_years,omitempty"`
 
 	// chassis no
 	ChassisNo string `json:"chassis_no,omitempty"`

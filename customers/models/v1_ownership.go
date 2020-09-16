@@ -18,6 +18,15 @@ type V1Ownership struct {
 	// asset
 	Asset *Customersv1Asset `json:"asset,omitempty"`
 
+	// Resource identifier for either of the following resources
+	// that the ownership belongs to:
+	// - customers.cosmicapis.com/Profile
+	// - companies.cosmicapis.com/Company
+	//
+	// One full example:
+	// - //customers.cosmicapis.com/organisations/STUB/profiles/00000000-0000-0000-0000-000000000000
+	BelongsTo string `json:"belongs_to,omitempty"`
+
 	// @OutputOnly
 	ID string `json:"id,omitempty"`
 
