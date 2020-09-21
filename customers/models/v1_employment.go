@@ -15,34 +15,23 @@ import (
 // swagger:model v1Employment
 type V1Employment struct {
 
+	// additional guaranteed income
+	AdditionalGuaranteedIncome *GoogletypeMoney `json:"additional_guaranteed_income,omitempty"`
+
+	// additional not guaranteed income
+	AdditionalNotGuaranteedIncome *GoogletypeMoney `json:"additional_not_guaranteed_income,omitempty"`
+
 	// address
 	Address *InternalwktAddress `json:"address,omitempty"`
 
-	// average monthly bonus
-	AverageMonthlyBonus *GoogletypeMoney `json:"average_monthly_bonus,omitempty"`
-
-	// average monthly overtime
-	AverageMonthlyOvertime *GoogletypeMoney `json:"average_monthly_overtime,omitempty"`
-
-	// basic salary
-	BasicSalary *GoogletypeMoney `json:"basic_salary,omitempty"`
+	// annual salary
+	AnnualSalary *GoogletypeMoney `json:"annual_salary,omitempty"`
 
 	// employer
 	Employer string `json:"employer,omitempty"`
 
-	// gross income six months
-	GrossIncomeSixMonths *GoogletypeMoney `json:"gross_income_six_months,omitempty"`
-
-	// gross income three months
-	GrossIncomeThreeMonths *GoogletypeMoney `json:"gross_income_three_months,omitempty"`
-
-	// When updating this field is ignored and will use the
-	// field from the UpdateEmploymentRequest.
-	// @OutputOnly
-	ID string `json:"id,omitempty"`
-
-	// is zero hour contract
-	IsZeroHourContract bool `json:"is_zero_hour_contract,omitempty"`
+	// is on zero hour contract
+	IsOnZeroHourContract bool `json:"is_on_zero_hour_contract,omitempty"`
 
 	// job title
 	JobTitle string `json:"job_title,omitempty"`
@@ -52,33 +41,31 @@ type V1Employment struct {
 
 	// status
 	Status V1EmploymentStatus `json:"status,omitempty"`
+
+	// zhc gross income last six months
+	ZhcGrossIncomeLastSixMonths *GoogletypeMoney `json:"zhc_gross_income_last_six_months,omitempty"`
+
+	// zhc gross income last three months
+	ZhcGrossIncomeLastThreeMonths *GoogletypeMoney `json:"zhc_gross_income_last_three_months,omitempty"`
 }
 
 // Validate validates this v1 employment
 func (m *V1Employment) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateAdditionalGuaranteedIncome(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateAdditionalNotGuaranteedIncome(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateAddress(formats); err != nil {
 		res = append(res, err)
 	}
 
-	if err := m.validateAverageMonthlyBonus(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateAverageMonthlyOvertime(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateBasicSalary(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateGrossIncomeSixMonths(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateGrossIncomeThreeMonths(formats); err != nil {
+	if err := m.validateAnnualSalary(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -90,9 +77,53 @@ func (m *V1Employment) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateZhcGrossIncomeLastSixMonths(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateZhcGrossIncomeLastThreeMonths(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *V1Employment) validateAdditionalGuaranteedIncome(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.AdditionalGuaranteedIncome) { // not required
+		return nil
+	}
+
+	if m.AdditionalGuaranteedIncome != nil {
+		if err := m.AdditionalGuaranteedIncome.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("additional_guaranteed_income")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *V1Employment) validateAdditionalNotGuaranteedIncome(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.AdditionalNotGuaranteedIncome) { // not required
+		return nil
+	}
+
+	if m.AdditionalNotGuaranteedIncome != nil {
+		if err := m.AdditionalNotGuaranteedIncome.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("additional_not_guaranteed_income")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -114,88 +145,16 @@ func (m *V1Employment) validateAddress(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *V1Employment) validateAverageMonthlyBonus(formats strfmt.Registry) error {
+func (m *V1Employment) validateAnnualSalary(formats strfmt.Registry) error {
 
-	if swag.IsZero(m.AverageMonthlyBonus) { // not required
+	if swag.IsZero(m.AnnualSalary) { // not required
 		return nil
 	}
 
-	if m.AverageMonthlyBonus != nil {
-		if err := m.AverageMonthlyBonus.Validate(formats); err != nil {
+	if m.AnnualSalary != nil {
+		if err := m.AnnualSalary.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("average_monthly_bonus")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-func (m *V1Employment) validateAverageMonthlyOvertime(formats strfmt.Registry) error {
-
-	if swag.IsZero(m.AverageMonthlyOvertime) { // not required
-		return nil
-	}
-
-	if m.AverageMonthlyOvertime != nil {
-		if err := m.AverageMonthlyOvertime.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("average_monthly_overtime")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-func (m *V1Employment) validateBasicSalary(formats strfmt.Registry) error {
-
-	if swag.IsZero(m.BasicSalary) { // not required
-		return nil
-	}
-
-	if m.BasicSalary != nil {
-		if err := m.BasicSalary.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("basic_salary")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-func (m *V1Employment) validateGrossIncomeSixMonths(formats strfmt.Registry) error {
-
-	if swag.IsZero(m.GrossIncomeSixMonths) { // not required
-		return nil
-	}
-
-	if m.GrossIncomeSixMonths != nil {
-		if err := m.GrossIncomeSixMonths.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("gross_income_six_months")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-func (m *V1Employment) validateGrossIncomeThreeMonths(formats strfmt.Registry) error {
-
-	if swag.IsZero(m.GrossIncomeThreeMonths) { // not required
-		return nil
-	}
-
-	if m.GrossIncomeThreeMonths != nil {
-		if err := m.GrossIncomeThreeMonths.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("gross_income_three_months")
+				return ve.ValidateName("annual_salary")
 			}
 			return err
 		}
@@ -233,6 +192,42 @@ func (m *V1Employment) validateStatus(formats strfmt.Registry) error {
 			return ve.ValidateName("status")
 		}
 		return err
+	}
+
+	return nil
+}
+
+func (m *V1Employment) validateZhcGrossIncomeLastSixMonths(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.ZhcGrossIncomeLastSixMonths) { // not required
+		return nil
+	}
+
+	if m.ZhcGrossIncomeLastSixMonths != nil {
+		if err := m.ZhcGrossIncomeLastSixMonths.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("zhc_gross_income_last_six_months")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *V1Employment) validateZhcGrossIncomeLastThreeMonths(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.ZhcGrossIncomeLastThreeMonths) { // not required
+		return nil
+	}
+
+	if m.ZhcGrossIncomeLastThreeMonths != nil {
+		if err := m.ZhcGrossIncomeLastThreeMonths.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("zhc_gross_income_last_three_months")
+			}
+			return err
+		}
 	}
 
 	return nil

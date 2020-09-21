@@ -27,8 +27,6 @@ type Client struct {
 type ClientService interface {
 	CustomerGatewayAddCompany(params *CustomerGatewayAddCompanyParams, authInfo runtime.ClientAuthInfoWriter) (*CustomerGatewayAddCompanyOK, error)
 
-	CustomerGatewayAddEmployment(params *CustomerGatewayAddEmploymentParams, authInfo runtime.ClientAuthInfoWriter) (*CustomerGatewayAddEmploymentOK, error)
-
 	CustomerGatewayAddOwnership(params *CustomerGatewayAddOwnershipParams, authInfo runtime.ClientAuthInfoWriter) (*CustomerGatewayAddOwnershipOK, error)
 
 	CustomerGatewayCreateDownloadDocumentLink(params *CustomerGatewayCreateDownloadDocumentLinkParams, authInfo runtime.ClientAuthInfoWriter) (*CustomerGatewayCreateDownloadDocumentLinkOK, error)
@@ -40,6 +38,8 @@ type ClientService interface {
 	CustomerGatewayGetAddressHistory(params *CustomerGatewayGetAddressHistoryParams, authInfo runtime.ClientAuthInfoWriter) (*CustomerGatewayGetAddressHistoryOK, error)
 
 	CustomerGatewayGetApplication(params *CustomerGatewayGetApplicationParams, authInfo runtime.ClientAuthInfoWriter) (*CustomerGatewayGetApplicationOK, error)
+
+	CustomerGatewayGetEmployment(params *CustomerGatewayGetEmploymentParams, authInfo runtime.ClientAuthInfoWriter) (*CustomerGatewayGetEmploymentOK, error)
 
 	CustomerGatewayGetNotifications(params *CustomerGatewayGetNotificationsParams, authInfo runtime.ClientAuthInfoWriter) (*CustomerGatewayGetNotificationsOK, error)
 
@@ -53,21 +53,17 @@ type ClientService interface {
 
 	CustomerGatewayListDocuments(params *CustomerGatewayListDocumentsParams, authInfo runtime.ClientAuthInfoWriter) (*CustomerGatewayListDocumentsOK, error)
 
-	CustomerGatewayListEmployment(params *CustomerGatewayListEmploymentParams, authInfo runtime.ClientAuthInfoWriter) (*CustomerGatewayListEmploymentOK, error)
-
 	CustomerGatewayListNotificationPreferences(params *CustomerGatewayListNotificationPreferencesParams, authInfo runtime.ClientAuthInfoWriter) (*CustomerGatewayListNotificationPreferencesOK, error)
 
 	CustomerGatewayListOwnerships(params *CustomerGatewayListOwnershipsParams, authInfo runtime.ClientAuthInfoWriter) (*CustomerGatewayListOwnershipsOK, error)
-
-	CustomerGatewayRemoveEmployment(params *CustomerGatewayRemoveEmploymentParams, authInfo runtime.ClientAuthInfoWriter) (*CustomerGatewayRemoveEmploymentOK, error)
 
 	CustomerGatewayRemoveOwnership(params *CustomerGatewayRemoveOwnershipParams, authInfo runtime.ClientAuthInfoWriter) (*CustomerGatewayRemoveOwnershipOK, error)
 
 	CustomerGatewaySetAddressHistory(params *CustomerGatewaySetAddressHistoryParams, authInfo runtime.ClientAuthInfoWriter) (*CustomerGatewaySetAddressHistoryOK, error)
 
-	CustomerGatewaySetNotificationPreferences(params *CustomerGatewaySetNotificationPreferencesParams, authInfo runtime.ClientAuthInfoWriter) (*CustomerGatewaySetNotificationPreferencesOK, error)
+	CustomerGatewaySetEmployment(params *CustomerGatewaySetEmploymentParams, authInfo runtime.ClientAuthInfoWriter) (*CustomerGatewaySetEmploymentOK, error)
 
-	CustomerGatewayUpdateEmployment(params *CustomerGatewayUpdateEmploymentParams, authInfo runtime.ClientAuthInfoWriter) (*CustomerGatewayUpdateEmploymentOK, error)
+	CustomerGatewaySetNotificationPreferences(params *CustomerGatewaySetNotificationPreferencesParams, authInfo runtime.ClientAuthInfoWriter) (*CustomerGatewaySetNotificationPreferencesOK, error)
 
 	CustomerGatewayUpdateOwnership(params *CustomerGatewayUpdateOwnershipParams, authInfo runtime.ClientAuthInfoWriter) (*CustomerGatewayUpdateOwnershipOK, error)
 
@@ -105,40 +101,6 @@ func (a *Client) CustomerGatewayAddCompany(params *CustomerGatewayAddCompanyPara
 	}
 	// unexpected success response
 	unexpectedSuccess := result.(*CustomerGatewayAddCompanyDefault)
-	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
-}
-
-/*
-  CustomerGatewayAddEmployment customer gateway add employment API
-*/
-func (a *Client) CustomerGatewayAddEmployment(params *CustomerGatewayAddEmploymentParams, authInfo runtime.ClientAuthInfoWriter) (*CustomerGatewayAddEmploymentOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewCustomerGatewayAddEmploymentParams()
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "CustomerGateway_AddEmployment",
-		Method:             "POST",
-		PathPattern:        "/v1/employment",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &CustomerGatewayAddEmploymentReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*CustomerGatewayAddEmploymentOK)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	unexpectedSuccess := result.(*CustomerGatewayAddEmploymentDefault)
 	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
 }
 
@@ -347,6 +309,40 @@ func (a *Client) CustomerGatewayGetApplication(params *CustomerGatewayGetApplica
 }
 
 /*
+  CustomerGatewayGetEmployment customer gateway get employment API
+*/
+func (a *Client) CustomerGatewayGetEmployment(params *CustomerGatewayGetEmploymentParams, authInfo runtime.ClientAuthInfoWriter) (*CustomerGatewayGetEmploymentOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCustomerGatewayGetEmploymentParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "CustomerGateway_GetEmployment",
+		Method:             "GET",
+		PathPattern:        "/v1/employment",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &CustomerGatewayGetEmploymentReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*CustomerGatewayGetEmploymentOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	unexpectedSuccess := result.(*CustomerGatewayGetEmploymentDefault)
+	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
+}
+
+/*
   CustomerGatewayGetNotifications customer gateway get notifications API
 */
 func (a *Client) CustomerGatewayGetNotifications(params *CustomerGatewayGetNotificationsParams, authInfo runtime.ClientAuthInfoWriter) (*CustomerGatewayGetNotificationsOK, error) {
@@ -551,40 +547,6 @@ func (a *Client) CustomerGatewayListDocuments(params *CustomerGatewayListDocumen
 }
 
 /*
-  CustomerGatewayListEmployment customer gateway list employment API
-*/
-func (a *Client) CustomerGatewayListEmployment(params *CustomerGatewayListEmploymentParams, authInfo runtime.ClientAuthInfoWriter) (*CustomerGatewayListEmploymentOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewCustomerGatewayListEmploymentParams()
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "CustomerGateway_ListEmployment",
-		Method:             "GET",
-		PathPattern:        "/v1/employment",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &CustomerGatewayListEmploymentReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*CustomerGatewayListEmploymentOK)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	unexpectedSuccess := result.(*CustomerGatewayListEmploymentDefault)
-	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
-}
-
-/*
   CustomerGatewayListNotificationPreferences customer gateway list notification preferences API
 */
 func (a *Client) CustomerGatewayListNotificationPreferences(params *CustomerGatewayListNotificationPreferencesParams, authInfo runtime.ClientAuthInfoWriter) (*CustomerGatewayListNotificationPreferencesOK, error) {
@@ -649,40 +611,6 @@ func (a *Client) CustomerGatewayListOwnerships(params *CustomerGatewayListOwners
 	}
 	// unexpected success response
 	unexpectedSuccess := result.(*CustomerGatewayListOwnershipsDefault)
-	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
-}
-
-/*
-  CustomerGatewayRemoveEmployment customer gateway remove employment API
-*/
-func (a *Client) CustomerGatewayRemoveEmployment(params *CustomerGatewayRemoveEmploymentParams, authInfo runtime.ClientAuthInfoWriter) (*CustomerGatewayRemoveEmploymentOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewCustomerGatewayRemoveEmploymentParams()
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "CustomerGateway_RemoveEmployment",
-		Method:             "DELETE",
-		PathPattern:        "/v1/employment/{employment_id}",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &CustomerGatewayRemoveEmploymentReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*CustomerGatewayRemoveEmploymentOK)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	unexpectedSuccess := result.(*CustomerGatewayRemoveEmploymentDefault)
 	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
 }
 
@@ -755,6 +683,40 @@ func (a *Client) CustomerGatewaySetAddressHistory(params *CustomerGatewaySetAddr
 }
 
 /*
+  CustomerGatewaySetEmployment customer gateway set employment API
+*/
+func (a *Client) CustomerGatewaySetEmployment(params *CustomerGatewaySetEmploymentParams, authInfo runtime.ClientAuthInfoWriter) (*CustomerGatewaySetEmploymentOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCustomerGatewaySetEmploymentParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "CustomerGateway_SetEmployment",
+		Method:             "PUT",
+		PathPattern:        "/v1/employment",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &CustomerGatewaySetEmploymentReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*CustomerGatewaySetEmploymentOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	unexpectedSuccess := result.(*CustomerGatewaySetEmploymentDefault)
+	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
+}
+
+/*
   CustomerGatewaySetNotificationPreferences merges the notification preferences which are currently available with the preferences provided in set notification preferences request
 */
 func (a *Client) CustomerGatewaySetNotificationPreferences(params *CustomerGatewaySetNotificationPreferencesParams, authInfo runtime.ClientAuthInfoWriter) (*CustomerGatewaySetNotificationPreferencesOK, error) {
@@ -785,40 +747,6 @@ func (a *Client) CustomerGatewaySetNotificationPreferences(params *CustomerGatew
 	}
 	// unexpected success response
 	unexpectedSuccess := result.(*CustomerGatewaySetNotificationPreferencesDefault)
-	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
-}
-
-/*
-  CustomerGatewayUpdateEmployment customer gateway update employment API
-*/
-func (a *Client) CustomerGatewayUpdateEmployment(params *CustomerGatewayUpdateEmploymentParams, authInfo runtime.ClientAuthInfoWriter) (*CustomerGatewayUpdateEmploymentOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewCustomerGatewayUpdateEmploymentParams()
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "CustomerGateway_UpdateEmployment",
-		Method:             "PUT",
-		PathPattern:        "/v1/employment/{employment_id}",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &CustomerGatewayUpdateEmploymentReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*CustomerGatewayUpdateEmploymentOK)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	unexpectedSuccess := result.(*CustomerGatewayUpdateEmploymentDefault)
 	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
 }
 

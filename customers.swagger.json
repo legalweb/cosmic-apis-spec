@@ -380,12 +380,12 @@
     },
     "/v1/employment": {
       "get": {
-        "operationId": "CustomerGateway_ListEmployment",
+        "operationId": "CustomerGateway_GetEmployment",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1ListEmploymentResponse"
+              "$ref": "#/definitions/v1GetEmploymentResponse"
             }
           },
           "default": {
@@ -395,76 +395,6 @@
             }
           }
         },
-        "tags": [
-          "CustomerGateway"
-        ],
-        "security": [
-          {
-            "ApiKeyAuth": []
-          }
-        ]
-      },
-      "post": {
-        "operationId": "CustomerGateway_AddEmployment",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1AddEmploymentResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response",
-            "schema": {
-              "$ref": "#/definitions/runtimeError"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/v1AddEmploymentRequest"
-            }
-          }
-        ],
-        "tags": [
-          "CustomerGateway"
-        ],
-        "security": [
-          {
-            "ApiKeyAuth": []
-          }
-        ]
-      }
-    },
-    "/v1/employment/{employment_id}": {
-      "delete": {
-        "operationId": "CustomerGateway_RemoveEmployment",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1RemoveEmploymentResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response",
-            "schema": {
-              "$ref": "#/definitions/runtimeError"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "employment_id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
         "tags": [
           "CustomerGateway"
         ],
@@ -475,12 +405,12 @@
         ]
       },
       "put": {
-        "operationId": "CustomerGateway_UpdateEmployment",
+        "operationId": "CustomerGateway_SetEmployment",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1UpdateEmploymentResponse"
+              "$ref": "#/definitions/v1SetEmploymentResponse"
             }
           },
           "default": {
@@ -492,17 +422,11 @@
         },
         "parameters": [
           {
-            "name": "employment_id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
             "name": "body",
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/v1UpdateEmploymentRequest"
+              "$ref": "#/definitions/v1SetEmploymentRequest"
             }
           }
         ],
@@ -1214,22 +1138,6 @@
     "v1AddCompanyResponse": {
       "type": "object"
     },
-    "v1AddEmploymentRequest": {
-      "type": "object",
-      "properties": {
-        "item": {
-          "$ref": "#/definitions/v1Employment"
-        }
-      }
-    },
-    "v1AddEmploymentResponse": {
-      "type": "object",
-      "properties": {
-        "employment_id": {
-          "type": "string"
-        }
-      }
-    },
     "v1AddOwnershipRequest": {
       "type": "object",
       "properties": {
@@ -1566,10 +1474,6 @@
     "v1Employment": {
       "type": "object",
       "properties": {
-        "id": {
-          "type": "string",
-          "title": "When updating this field is ignored and will use the\nfield from the UpdateEmploymentRequest.\n@OutputOnly"
-        },
         "employer": {
           "type": "string"
         },
@@ -1585,23 +1489,23 @@
         "job_title": {
           "type": "string"
         },
-        "basic_salary": {
+        "annual_salary": {
           "$ref": "#/definitions/googletypeMoney"
         },
-        "average_monthly_bonus": {
+        "additional_guaranteed_income": {
           "$ref": "#/definitions/googletypeMoney"
         },
-        "average_monthly_overtime": {
+        "additional_not_guaranteed_income": {
           "$ref": "#/definitions/googletypeMoney"
         },
-        "is_zero_hour_contract": {
+        "is_on_zero_hour_contract": {
           "type": "boolean",
           "format": "boolean"
         },
-        "gross_income_three_months": {
+        "zhc_gross_income_last_three_months": {
           "$ref": "#/definitions/googletypeMoney"
         },
-        "gross_income_six_months": {
+        "zhc_gross_income_last_six_months": {
           "$ref": "#/definitions/googletypeMoney"
         }
       }
@@ -1609,14 +1513,18 @@
     "v1EmploymentStatus": {
       "type": "string",
       "enum": [
-        "EMPLOYMENT_STATUS_UNKNOWN",
-        "EMPLOYMENT_STATUS_EMPLOYED",
-        "EMPLOYMENT_STATUS_SELF_EMPLOYED",
-        "EMPLOYMENT_STATUS_DIRECTOR",
-        "EMPLOYMENT_STATUS_RETIRED",
-        "EMPLOYMENT_STATUS_UNEMPLOYED"
+        "ES_UNKNOWN",
+        "ES_FULL_TIME",
+        "ES_PART_TIME",
+        "ES_SELF_EMPLOYED",
+        "ES_CONTRACTOR",
+        "ES_DIRECTOR",
+        "ES_UNEMPLOYED",
+        "ES_RETIRED",
+        "ES_STUDENT"
       ],
-      "default": "EMPLOYMENT_STATUS_UNKNOWN"
+      "default": "ES_UNKNOWN",
+      "title": "@see /api/customers/v1/customers.proto:EmploymentStatus"
     },
     "v1GetAddressHistoryResponse": {
       "type": "object",
@@ -1634,6 +1542,14 @@
       "properties": {
         "name": {
           "type": "string"
+        }
+      }
+    },
+    "v1GetEmploymentResponse": {
+      "type": "object",
+      "properties": {
+        "item": {
+          "$ref": "#/definitions/v1Employment"
         }
       }
     },
@@ -1738,17 +1654,6 @@
           "type": "array",
           "items": {
             "$ref": "#/definitions/v1DocumentCollection"
-          }
-        }
-      }
-    },
-    "v1ListEmploymentResponse": {
-      "type": "object",
-      "properties": {
-        "items": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/v1Employment"
           }
         }
       }
@@ -1918,9 +1823,6 @@
         }
       }
     },
-    "v1RemoveEmploymentResponse": {
-      "type": "object"
-    },
     "v1RemoveOwnershipResponse": {
       "type": "object"
     },
@@ -1938,6 +1840,17 @@
     "v1SetAddressHistoryResponse": {
       "type": "object"
     },
+    "v1SetEmploymentRequest": {
+      "type": "object",
+      "properties": {
+        "item": {
+          "$ref": "#/definitions/v1Employment"
+        }
+      }
+    },
+    "v1SetEmploymentResponse": {
+      "type": "object"
+    },
     "v1SetNotificationPreferencesRequest": {
       "type": "object",
       "properties": {
@@ -1950,20 +1863,6 @@
       }
     },
     "v1SetNotificationPreferencesResponse": {
-      "type": "object"
-    },
-    "v1UpdateEmploymentRequest": {
-      "type": "object",
-      "properties": {
-        "employment_id": {
-          "type": "string"
-        },
-        "item": {
-          "$ref": "#/definitions/v1Employment"
-        }
-      }
-    },
-    "v1UpdateEmploymentResponse": {
       "type": "object"
     },
     "v1UpdateOwnershipRequest": {

@@ -13,29 +13,38 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// V1EmploymentStatus v1 employment status
+// V1EmploymentStatus @see /api/customers/v1/customers.proto:EmploymentStatus
 // swagger:model v1EmploymentStatus
 type V1EmploymentStatus string
 
 const (
 
-	// V1EmploymentStatusEMPLOYMENTSTATUSUNKNOWN captures enum value "EMPLOYMENT_STATUS_UNKNOWN"
-	V1EmploymentStatusEMPLOYMENTSTATUSUNKNOWN V1EmploymentStatus = "EMPLOYMENT_STATUS_UNKNOWN"
+	// V1EmploymentStatusESUNKNOWN captures enum value "ES_UNKNOWN"
+	V1EmploymentStatusESUNKNOWN V1EmploymentStatus = "ES_UNKNOWN"
 
-	// V1EmploymentStatusEMPLOYMENTSTATUSEMPLOYED captures enum value "EMPLOYMENT_STATUS_EMPLOYED"
-	V1EmploymentStatusEMPLOYMENTSTATUSEMPLOYED V1EmploymentStatus = "EMPLOYMENT_STATUS_EMPLOYED"
+	// V1EmploymentStatusESFULLTIME captures enum value "ES_FULL_TIME"
+	V1EmploymentStatusESFULLTIME V1EmploymentStatus = "ES_FULL_TIME"
 
-	// V1EmploymentStatusEMPLOYMENTSTATUSSELFEMPLOYED captures enum value "EMPLOYMENT_STATUS_SELF_EMPLOYED"
-	V1EmploymentStatusEMPLOYMENTSTATUSSELFEMPLOYED V1EmploymentStatus = "EMPLOYMENT_STATUS_SELF_EMPLOYED"
+	// V1EmploymentStatusESPARTTIME captures enum value "ES_PART_TIME"
+	V1EmploymentStatusESPARTTIME V1EmploymentStatus = "ES_PART_TIME"
 
-	// V1EmploymentStatusEMPLOYMENTSTATUSDIRECTOR captures enum value "EMPLOYMENT_STATUS_DIRECTOR"
-	V1EmploymentStatusEMPLOYMENTSTATUSDIRECTOR V1EmploymentStatus = "EMPLOYMENT_STATUS_DIRECTOR"
+	// V1EmploymentStatusESSELFEMPLOYED captures enum value "ES_SELF_EMPLOYED"
+	V1EmploymentStatusESSELFEMPLOYED V1EmploymentStatus = "ES_SELF_EMPLOYED"
 
-	// V1EmploymentStatusEMPLOYMENTSTATUSRETIRED captures enum value "EMPLOYMENT_STATUS_RETIRED"
-	V1EmploymentStatusEMPLOYMENTSTATUSRETIRED V1EmploymentStatus = "EMPLOYMENT_STATUS_RETIRED"
+	// V1EmploymentStatusESCONTRACTOR captures enum value "ES_CONTRACTOR"
+	V1EmploymentStatusESCONTRACTOR V1EmploymentStatus = "ES_CONTRACTOR"
 
-	// V1EmploymentStatusEMPLOYMENTSTATUSUNEMPLOYED captures enum value "EMPLOYMENT_STATUS_UNEMPLOYED"
-	V1EmploymentStatusEMPLOYMENTSTATUSUNEMPLOYED V1EmploymentStatus = "EMPLOYMENT_STATUS_UNEMPLOYED"
+	// V1EmploymentStatusESDIRECTOR captures enum value "ES_DIRECTOR"
+	V1EmploymentStatusESDIRECTOR V1EmploymentStatus = "ES_DIRECTOR"
+
+	// V1EmploymentStatusESUNEMPLOYED captures enum value "ES_UNEMPLOYED"
+	V1EmploymentStatusESUNEMPLOYED V1EmploymentStatus = "ES_UNEMPLOYED"
+
+	// V1EmploymentStatusESRETIRED captures enum value "ES_RETIRED"
+	V1EmploymentStatusESRETIRED V1EmploymentStatus = "ES_RETIRED"
+
+	// V1EmploymentStatusESSTUDENT captures enum value "ES_STUDENT"
+	V1EmploymentStatusESSTUDENT V1EmploymentStatus = "ES_STUDENT"
 )
 
 // for schema
@@ -43,7 +52,7 @@ var v1EmploymentStatusEnum []interface{}
 
 func init() {
 	var res []V1EmploymentStatus
-	if err := json.Unmarshal([]byte(`["EMPLOYMENT_STATUS_UNKNOWN","EMPLOYMENT_STATUS_EMPLOYED","EMPLOYMENT_STATUS_SELF_EMPLOYED","EMPLOYMENT_STATUS_DIRECTOR","EMPLOYMENT_STATUS_RETIRED","EMPLOYMENT_STATUS_UNEMPLOYED"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["ES_UNKNOWN","ES_FULL_TIME","ES_PART_TIME","ES_SELF_EMPLOYED","ES_CONTRACTOR","ES_DIRECTOR","ES_UNEMPLOYED","ES_RETIRED","ES_STUDENT"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
