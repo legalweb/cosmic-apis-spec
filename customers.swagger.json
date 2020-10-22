@@ -1409,12 +1409,6 @@
         "uploaded": {
           "type": "string",
           "format": "date-time"
-        },
-        "metadata": {
-          "type": "object",
-          "additionalProperties": {
-            "type": "string"
-          }
         }
       }
     },
@@ -1468,6 +1462,9 @@
         "satisfied": {
           "type": "boolean",
           "format": "boolean"
+        },
+        "notes": {
+          "type": "string"
         }
       }
     },
