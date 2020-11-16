@@ -5,9 +5,9 @@ import (
 	"log"
 	"os"
 
-	identityClient "lwebco.de/cosmic-apis-spec/identity/client"
-	identitiesOps "lwebco.de/cosmic-apis-spec/identity/client/identities"
-	identityModels "lwebco.de/cosmic-apis-spec/identity/models"
+	identityClient "lwebco.de/cosmic-apis-spec/identities/client"
+	identitiesOps "lwebco.de/cosmic-apis-spec/identities/client/identities"
+	identityModels "lwebco.de/cosmic-apis-spec/identities/models"
 	introducersClient "lwebco.de/cosmic-apis-spec/introducers/client"
 	introducersOps "lwebco.de/cosmic-apis-spec/introducers/client/introducers"
 	"lwebco.de/cosmic-apis-spec/pkg/auth"
@@ -24,12 +24,12 @@ func main() {
 	identities := identityClient.Default.Identities
 	introducers := introducersClient.Default.Introducers
 
-	loginReq := identitiesOps.NewLoginParams().WithContext(ctx).WithBody(&identityModels.V1LoginRequest{
+	loginReq := identitiesOps.NewIdentitiesLoginParams().WithContext(ctx).WithBody(&identityModels.V1LoginRequest{
 		EmailAddress:   os.Args[2],
 		Password:       os.Args[3],
-		OrganisationID: []string{os.Args[1]},
+		OrganisationID: os.Args[1],
 	})
-	loginRes, err := identities.Login(loginReq)
+	loginRes, err := identities.IdentitiesLogin(loginReq)
 	if err != nil {
 		log.Fatal("unable to login:", err)
 	}

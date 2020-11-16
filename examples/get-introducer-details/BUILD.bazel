@@ -6,9 +6,9 @@ go_library(
     importpath = "lwebco.de/cosmic-apis-spec/examples/get-introducer-details",
     visibility = ["//visibility:private"],
     deps = [
-        "//identity/client:go_default_library",
-        "//identity/client/identities:go_default_library",
-        "//identity/models:go_default_library",
+        "//identities/client:go_default_library",
+        "//identities/client/identities:go_default_library",
+        "//identities/models:go_default_library",
         "//introducers/client:go_default_library",
         "//introducers/client/introducers:go_default_library",
         "//pkg/auth:go_default_library",
