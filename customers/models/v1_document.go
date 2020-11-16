@@ -22,9 +22,6 @@ type V1Document struct {
 	// The name of the file.
 	Label string `json:"label,omitempty"`
 
-	// metadata
-	Metadata map[string]string `json:"metadata,omitempty"`
-
 	// name
 	Name string `json:"name,omitempty"`
 

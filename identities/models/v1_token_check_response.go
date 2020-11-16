@@ -6,9 +6,6 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"strconv"
-
-	"github.com/go-openapi/errors"
 	strfmt "github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
@@ -23,46 +20,15 @@ type V1TokenCheckResponse struct {
 	// email address
 	EmailAddress string `json:"email_address,omitempty"`
 
-	// organisations
-	Organisations []*V1TokenCheckResponseOrganisationAccess `json:"organisations"`
+	// organisation id
+	OrganisationID string `json:"organisation_id,omitempty"`
+
+	// organisation role
+	OrganisationRole string `json:"organisation_role,omitempty"`
 }
 
 // Validate validates this v1 token check response
 func (m *V1TokenCheckResponse) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateOrganisations(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *V1TokenCheckResponse) validateOrganisations(formats strfmt.Registry) error {
-
-	if swag.IsZero(m.Organisations) { // not required
-		return nil
-	}
-
-	for i := 0; i < len(m.Organisations); i++ {
-		if swag.IsZero(m.Organisations[i]) { // not required
-			continue
-		}
-
-		if m.Organisations[i] != nil {
-			if err := m.Organisations[i].Validate(formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("organisations" + "." + strconv.Itoa(i))
-				}
-				return err
-			}
-		}
-
-	}
-
 	return nil
 }
 

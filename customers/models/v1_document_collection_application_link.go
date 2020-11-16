@@ -17,6 +17,9 @@ type V1DocumentCollectionApplicationLink struct {
 	// application
 	Application string `json:"application,omitempty"`
 
+	// notes
+	Notes string `json:"notes,omitempty"`
+
 	// satisfied
 	Satisfied bool `json:"satisfied,omitempty"`
 }

@@ -991,10 +991,7 @@
           "type": "string"
         },
         "organisation_id": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
+          "type": "string"
         }
       }
     },
@@ -1010,28 +1007,17 @@
         "email_address": {
           "type": "string"
         },
-        "organisations": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/v1LoginResponseOrganisationAccess"
-          }
-        },
         "renew_token": {
           "type": "string"
         },
         "expires": {
           "type": "integer",
           "format": "int32"
-        }
-      }
-    },
-    "v1LoginResponseOrganisationAccess": {
-      "type": "object",
-      "properties": {
+        },
         "organisation_id": {
           "type": "string"
         },
-        "role": {
+        "organisation_role": {
           "type": "string"
         }
       }
@@ -1165,21 +1151,10 @@
         "email_address": {
           "type": "string"
         },
-        "organisations": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/v1TokenCheckResponseOrganisationAccess"
-          }
-        }
-      }
-    },
-    "v1TokenCheckResponseOrganisationAccess": {
-      "type": "object",
-      "properties": {
         "organisation_id": {
           "type": "string"
         },
-        "role": {
+        "organisation_role": {
           "type": "string"
         }
       }

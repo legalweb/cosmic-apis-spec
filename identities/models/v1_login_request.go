@@ -18,7 +18,7 @@ type V1LoginRequest struct {
 	EmailAddress string `json:"email_address,omitempty"`
 
 	// organisation id
-	OrganisationID []string `json:"organisation_id"`
+	OrganisationID string `json:"organisation_id,omitempty"`
 
 	// password
 	Password string `json:"password,omitempty"`

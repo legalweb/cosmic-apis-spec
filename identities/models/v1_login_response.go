@@ -6,9 +6,6 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	"strconv"
-
-	"github.com/go-openapi/errors"
 	strfmt "github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
@@ -26,8 +23,11 @@ type V1LoginResponse struct {
 	// expires
 	Expires int32 `json:"expires,omitempty"`
 
-	// organisations
-	Organisations []*V1LoginResponseOrganisationAccess `json:"organisations"`
+	// organisation id
+	OrganisationID string `json:"organisation_id,omitempty"`
+
+	// organisation role
+	OrganisationRole string `json:"organisation_role,omitempty"`
 
 	// renew token
 	RenewToken string `json:"renew_token,omitempty"`
@@ -38,40 +38,6 @@ type V1LoginResponse struct {
 
 // Validate validates this v1 login response
 func (m *V1LoginResponse) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateOrganisations(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *V1LoginResponse) validateOrganisations(formats strfmt.Registry) error {
-
-	if swag.IsZero(m.Organisations) { // not required
-		return nil
-	}
-
-	for i := 0; i < len(m.Organisations); i++ {
-		if swag.IsZero(m.Organisations[i]) { // not required
-			continue
-		}
-
-		if m.Organisations[i] != nil {
-			if err := m.Organisations[i].Validate(formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("organisations" + "." + strconv.Itoa(i))
-				}
-				return err
-			}
-		}
-
-	}
-
 	return nil
 }
 
