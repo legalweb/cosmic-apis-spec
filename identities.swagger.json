@@ -290,7 +290,7 @@
             "collectionFormat": "multi"
           },
           {
-            "name": "display_name",
+            "name": "label",
             "in": "query",
             "required": false,
             "type": "string"
@@ -509,49 +509,6 @@
             "in": "path",
             "required": true,
             "type": "string"
-          }
-        ],
-        "tags": [
-          "Identities"
-        ],
-        "security": [
-          {
-            "ApiKeyAuth": []
-          }
-        ]
-      }
-    },
-    "/v1/organisations/{organisation_id}/status": {
-      "post": {
-        "operationId": "Identities_SetOrganisationStatus",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "properties": {}
-            }
-          },
-          "default": {
-            "description": "An unexpected error response",
-            "schema": {
-              "$ref": "#/definitions/runtimeError"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "organisation_id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/v1SetOrganisationStatusRequest"
-            }
           }
         ],
         "tags": [
@@ -862,7 +819,7 @@
         "surname": {
           "type": "string"
         },
-        "telephone": {
+        "phone_number": {
           "type": "string"
         }
       }
@@ -902,7 +859,7 @@
         "surname": {
           "type": "string"
         },
-        "telephone": {
+        "phone_number": {
           "type": "string"
         }
       }
@@ -919,10 +876,10 @@
         "administrator_id": {
           "type": "string"
         },
-        "display_name": {
+        "label": {
           "type": "string"
         },
-        "telephone_number": {
+        "phone_number": {
           "type": "string",
           "title": "Contact details"
         },
@@ -1041,10 +998,10 @@
         "organisation_id": {
           "type": "string"
         },
-        "display_name": {
+        "label": {
           "type": "string"
         },
-        "telephone_number": {
+        "phone_number": {
           "type": "string"
         },
         "website": {
@@ -1056,22 +1013,15 @@
         "address": {
           "$ref": "#/definitions/internalwktAddress"
         },
-        "status": {
-          "$ref": "#/definitions/v1OrganisationStatus"
+        "active": {
+          "type": "boolean",
+          "format": "boolean"
         },
         "created": {
           "type": "string",
           "format": "date-time"
         }
       }
-    },
-    "v1OrganisationStatus": {
-      "type": "string",
-      "enum": [
-        "active",
-        "inactive"
-      ],
-      "default": "active"
     },
     "v1QueryAccountMembershipsResponse": {
       "type": "object",
@@ -1122,17 +1072,6 @@
     },
     "v1SendResetPasswordResponse": {
       "type": "object"
-    },
-    "v1SetOrganisationStatusRequest": {
-      "type": "object",
-      "properties": {
-        "organisation_id": {
-          "type": "string"
-        },
-        "new_status": {
-          "$ref": "#/definitions/v1OrganisationStatus"
-        }
-      }
     },
     "v1TokenCheckRequest": {
       "type": "object",
@@ -1195,7 +1134,7 @@
         "surname": {
           "type": "string"
         },
-        "telephone": {
+        "phone_number": {
           "type": "string"
         }
       }
@@ -1223,10 +1162,10 @@
         "organisation_id": {
           "type": "string"
         },
-        "display_name": {
+        "label": {
           "type": "string"
         },
-        "telephone_number": {
+        "phone_number": {
           "type": "string"
         },
         "website": {

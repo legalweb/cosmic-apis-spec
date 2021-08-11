@@ -18,17 +18,17 @@ type V1UpdateOrganisationRequest struct {
 	// address
 	Address *InternalwktAddress `json:"address,omitempty"`
 
-	// display name
-	DisplayName string `json:"display_name,omitempty"`
-
 	// email address
 	EmailAddress string `json:"email_address,omitempty"`
+
+	// label
+	Label string `json:"label,omitempty"`
 
 	// organisation id
 	OrganisationID string `json:"organisation_id,omitempty"`
 
-	// telephone number
-	TelephoneNumber string `json:"telephone_number,omitempty"`
+	// phone number
+	PhoneNumber string `json:"phone_number,omitempty"`
 
 	// website
 	Website string `json:"website,omitempty"`

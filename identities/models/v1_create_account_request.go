@@ -26,11 +26,11 @@ type V1CreateAccountRequest struct {
 	// password
 	Password string `json:"password,omitempty"`
 
+	// phone number
+	PhoneNumber string `json:"phone_number,omitempty"`
+
 	// surname
 	Surname string `json:"surname,omitempty"`
-
-	// telephone
-	Telephone string `json:"telephone,omitempty"`
 }
 
 // Validate validates this v1 create account request

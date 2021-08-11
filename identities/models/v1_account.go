@@ -32,11 +32,11 @@ type V1Account struct {
 	// forename
 	Forename string `json:"forename,omitempty"`
 
+	// phone number
+	PhoneNumber string `json:"phone_number,omitempty"`
+
 	// surname
 	Surname string `json:"surname,omitempty"`
-
-	// telephone
-	Telephone string `json:"telephone,omitempty"`
 }
 
 // Validate validates this v1 account

@@ -21,17 +21,17 @@ type V1CreateOrganisationRequest struct {
 	// administrator id
 	AdministratorID string `json:"administrator_id,omitempty"`
 
-	// display name
-	DisplayName string `json:"display_name,omitempty"`
-
 	// email address
 	EmailAddress string `json:"email_address,omitempty"`
+
+	// label
+	Label string `json:"label,omitempty"`
 
 	// organisation id
 	OrganisationID string `json:"organisation_id,omitempty"`
 
 	// Contact details
-	TelephoneNumber string `json:"telephone_number,omitempty"`
+	PhoneNumber string `json:"phone_number,omitempty"`
 
 	// website
 	Website string `json:"website,omitempty"`

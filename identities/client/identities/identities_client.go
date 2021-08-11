@@ -49,8 +49,6 @@ type ClientService interface {
 
 	IdentitiesSendResetPassword(params *IdentitiesSendResetPasswordParams) (*IdentitiesSendResetPasswordOK, error)
 
-	IdentitiesSetOrganisationStatus(params *IdentitiesSetOrganisationStatusParams, authInfo runtime.ClientAuthInfoWriter) (*IdentitiesSetOrganisationStatusOK, error)
-
 	IdentitiesTokenCheck(params *IdentitiesTokenCheckParams) (*IdentitiesTokenCheckOK, error)
 
 	IdentitiesTokenRenew(params *IdentitiesTokenRenewParams) (*IdentitiesTokenRenewOK, error)
@@ -465,40 +463,6 @@ func (a *Client) IdentitiesSendResetPassword(params *IdentitiesSendResetPassword
 	}
 	// unexpected success response
 	unexpectedSuccess := result.(*IdentitiesSendResetPasswordDefault)
-	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
-}
-
-/*
-  IdentitiesSetOrganisationStatus identities set organisation status API
-*/
-func (a *Client) IdentitiesSetOrganisationStatus(params *IdentitiesSetOrganisationStatusParams, authInfo runtime.ClientAuthInfoWriter) (*IdentitiesSetOrganisationStatusOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewIdentitiesSetOrganisationStatusParams()
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "Identities_SetOrganisationStatus",
-		Method:             "POST",
-		PathPattern:        "/v1/organisations/{organisation_id}/status",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &IdentitiesSetOrganisationStatusReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*IdentitiesSetOrganisationStatusOK)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	unexpectedSuccess := result.(*IdentitiesSetOrganisationStatusDefault)
 	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
 }
 

@@ -16,6 +16,9 @@ import (
 // swagger:model v1Organisation
 type V1Organisation struct {
 
+	// active
+	Active bool `json:"active,omitempty"`
+
 	// address
 	Address *InternalwktAddress `json:"address,omitempty"`
 
@@ -23,20 +26,17 @@ type V1Organisation struct {
 	// Format: date-time
 	Created strfmt.DateTime `json:"created,omitempty"`
 
-	// display name
-	DisplayName string `json:"display_name,omitempty"`
-
 	// email address
 	EmailAddress string `json:"email_address,omitempty"`
+
+	// label
+	Label string `json:"label,omitempty"`
 
 	// organisation id
 	OrganisationID string `json:"organisation_id,omitempty"`
 
-	// status
-	Status V1OrganisationStatus `json:"status,omitempty"`
-
-	// telephone number
-	TelephoneNumber string `json:"telephone_number,omitempty"`
+	// phone number
+	PhoneNumber string `json:"phone_number,omitempty"`
 
 	// website
 	Website string `json:"website,omitempty"`
@@ -51,10 +51,6 @@ func (m *V1Organisation) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateCreated(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateStatus(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -89,22 +85,6 @@ func (m *V1Organisation) validateCreated(formats strfmt.Registry) error {
 	}
 
 	if err := validate.FormatOf("created", "body", "date-time", m.Created.String(), formats); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *V1Organisation) validateStatus(formats strfmt.Registry) error {
-
-	if swag.IsZero(m.Status) { // not required
-		return nil
-	}
-
-	if err := m.Status.Validate(formats); err != nil {
-		if ve, ok := err.(*errors.Validation); ok {
-			return ve.ValidateName("status")
-		}
 		return err
 	}
 

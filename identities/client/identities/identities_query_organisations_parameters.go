@@ -62,10 +62,10 @@ for the identities query organisations operation typically these are written to 
 */
 type IdentitiesQueryOrganisationsParams struct {
 
-	/*DisplayName*/
-	DisplayName *string
 	/*EmailAddress*/
 	EmailAddress *string
+	/*Label*/
+	Label *string
 	/*OrganisationID*/
 	OrganisationID []string
 	/*PaginationLimit*/
@@ -111,17 +111,6 @@ func (o *IdentitiesQueryOrganisationsParams) SetHTTPClient(client *http.Client) 
 	o.HTTPClient = client
 }
 
-// WithDisplayName adds the displayName to the identities query organisations params
-func (o *IdentitiesQueryOrganisationsParams) WithDisplayName(displayName *string) *IdentitiesQueryOrganisationsParams {
-	o.SetDisplayName(displayName)
-	return o
-}
-
-// SetDisplayName adds the displayName to the identities query organisations params
-func (o *IdentitiesQueryOrganisationsParams) SetDisplayName(displayName *string) {
-	o.DisplayName = displayName
-}
-
 // WithEmailAddress adds the emailAddress to the identities query organisations params
 func (o *IdentitiesQueryOrganisationsParams) WithEmailAddress(emailAddress *string) *IdentitiesQueryOrganisationsParams {
 	o.SetEmailAddress(emailAddress)
@@ -131,6 +120,17 @@ func (o *IdentitiesQueryOrganisationsParams) WithEmailAddress(emailAddress *stri
 // SetEmailAddress adds the emailAddress to the identities query organisations params
 func (o *IdentitiesQueryOrganisationsParams) SetEmailAddress(emailAddress *string) {
 	o.EmailAddress = emailAddress
+}
+
+// WithLabel adds the label to the identities query organisations params
+func (o *IdentitiesQueryOrganisationsParams) WithLabel(label *string) *IdentitiesQueryOrganisationsParams {
+	o.SetLabel(label)
+	return o
+}
+
+// SetLabel adds the label to the identities query organisations params
+func (o *IdentitiesQueryOrganisationsParams) SetLabel(label *string) {
+	o.Label = label
 }
 
 // WithOrganisationID adds the organisationID to the identities query organisations params
@@ -174,22 +174,6 @@ func (o *IdentitiesQueryOrganisationsParams) WriteToRequest(r runtime.ClientRequ
 	}
 	var res []error
 
-	if o.DisplayName != nil {
-
-		// query param display_name
-		var qrDisplayName string
-		if o.DisplayName != nil {
-			qrDisplayName = *o.DisplayName
-		}
-		qDisplayName := qrDisplayName
-		if qDisplayName != "" {
-			if err := r.SetQueryParam("display_name", qDisplayName); err != nil {
-				return err
-			}
-		}
-
-	}
-
 	if o.EmailAddress != nil {
 
 		// query param email_address
@@ -200,6 +184,22 @@ func (o *IdentitiesQueryOrganisationsParams) WriteToRequest(r runtime.ClientRequ
 		qEmailAddress := qrEmailAddress
 		if qEmailAddress != "" {
 			if err := r.SetQueryParam("email_address", qEmailAddress); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.Label != nil {
+
+		// query param label
+		var qrLabel string
+		if o.Label != nil {
+			qrLabel = *o.Label
+		}
+		qLabel := qrLabel
+		if qLabel != "" {
+			if err := r.SetQueryParam("label", qLabel); err != nil {
 				return err
 			}
 		}

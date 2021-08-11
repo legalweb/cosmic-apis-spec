@@ -28,8 +28,6 @@ go_library(
         "identities_remove_organisation_member_responses.go",
         "identities_send_reset_password_parameters.go",
         "identities_send_reset_password_responses.go",
-        "identities_set_organisation_status_parameters.go",
-        "identities_set_organisation_status_responses.go",
         "identities_token_check_parameters.go",
         "identities_token_check_responses.go",
         "identities_token_renew_parameters.go",
