@@ -261,301 +261,6 @@
         ]
       }
     },
-    "/v1/organisations": {
-      "get": {
-        "operationId": "Identities_QueryOrganisations",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1QueryOrganisationsResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response",
-            "schema": {
-              "$ref": "#/definitions/runtimeError"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "organisation_id",
-            "in": "query",
-            "required": false,
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "collectionFormat": "multi"
-          },
-          {
-            "name": "label",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "email_address",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "pagination.page",
-            "in": "query",
-            "required": false,
-            "type": "integer",
-            "format": "int64"
-          },
-          {
-            "name": "pagination.limit",
-            "in": "query",
-            "required": false,
-            "type": "integer",
-            "format": "int64"
-          }
-        ],
-        "tags": [
-          "Identities"
-        ],
-        "security": [
-          {
-            "ApiKeyAuth": []
-          }
-        ]
-      },
-      "post": {
-        "operationId": "Identities_CreateOrganisation",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1CreateOrganisationResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response",
-            "schema": {
-              "$ref": "#/definitions/runtimeError"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/v1CreateOrganisationRequest"
-            }
-          }
-        ],
-        "tags": [
-          "Identities"
-        ],
-        "security": [
-          {
-            "ApiKeyAuth": []
-          }
-        ]
-      }
-    },
-    "/v1/organisations/{organisation_id}": {
-      "get": {
-        "operationId": "Identities_GetOrganisation",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1GetOrganisationResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response",
-            "schema": {
-              "$ref": "#/definitions/runtimeError"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "organisation_id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "tags": [
-          "Identities"
-        ],
-        "security": [
-          {
-            "ApiKeyAuth": []
-          }
-        ]
-      },
-      "post": {
-        "operationId": "Identities_UpdateOrganisation",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1UpdateOrganisationResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response",
-            "schema": {
-              "$ref": "#/definitions/runtimeError"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "organisation_id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/v1UpdateOrganisationRequest"
-            }
-          }
-        ],
-        "tags": [
-          "Identities"
-        ],
-        "security": [
-          {
-            "ApiKeyAuth": []
-          }
-        ]
-      }
-    },
-    "/v1/organisations/{organisation_id}/members": {
-      "post": {
-        "operationId": "Identities_AddOrganisationMember",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1AddOrganisationMemberResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response",
-            "schema": {
-              "$ref": "#/definitions/runtimeError"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "organisation_id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/v1AddOrganisationMemberRequest"
-            }
-          }
-        ],
-        "tags": [
-          "Identities"
-        ],
-        "security": [
-          {
-            "ApiKeyAuth": []
-          }
-        ]
-      }
-    },
-    "/v1/organisations/{organisation_id}/members/{account_id}": {
-      "delete": {
-        "operationId": "Identities_RemoveOrganisationMember",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "properties": {}
-            }
-          },
-          "default": {
-            "description": "An unexpected error response",
-            "schema": {
-              "$ref": "#/definitions/runtimeError"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "organisation_id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "account_id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "tags": [
-          "Identities"
-        ],
-        "security": [
-          {
-            "ApiKeyAuth": []
-          }
-        ]
-      }
-    },
-    "/v1/orgmemberships": {
-      "get": {
-        "operationId": "Identities_QueryAccountMemberships",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1QueryAccountMembershipsResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response",
-            "schema": {
-              "$ref": "#/definitions/runtimeError"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "account_id",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          }
-        ],
-        "tags": [
-          "Identities"
-        ],
-        "security": [
-          {
-            "ApiKeyAuth": []
-          }
-        ]
-      }
-    },
     "/v1/token/check": {
       "post": {
         "operationId": "Identities_TokenCheck",
@@ -686,50 +391,6 @@
     }
   },
   "definitions": {
-    "QueryAccountMembershipsResponseMap": {
-      "type": "object",
-      "properties": {
-        "organisation_id": {
-          "type": "string"
-        },
-        "role": {
-          "$ref": "#/definitions/v1MemberRole"
-        }
-      }
-    },
-    "internalwktAddress": {
-      "type": "object",
-      "properties": {
-        "building": {
-          "type": "string",
-          "description": "Optional."
-        },
-        "street_name": {
-          "type": "string",
-          "description": "Optional."
-        },
-        "town": {
-          "type": "string",
-          "description": "Optional."
-        },
-        "city": {
-          "type": "string",
-          "description": "Optional."
-        },
-        "county": {
-          "type": "string",
-          "description": "Optional."
-        },
-        "postal_code": {
-          "type": "string",
-          "description": "Optional."
-        },
-        "region": {
-          "type": "string",
-          "description": "Required. ISO-3166 three letter code of the country/region of the address.\nThis is never inferred and it is up to the user to ensure the value is\ncorrect. See https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes\nfor details.\nExample: \"GBR\" for United Kingdom."
-        }
-      }
-    },
     "internalwktPaginationRequest": {
       "type": "object",
       "properties": {
@@ -813,6 +474,9 @@
           "type": "string",
           "format": "date-time"
         },
+        "role": {
+          "type": "string"
+        },
         "forename": {
           "type": "string"
         },
@@ -824,23 +488,6 @@
         }
       }
     },
-    "v1AddOrganisationMemberRequest": {
-      "type": "object",
-      "properties": {
-        "organisation_id": {
-          "type": "string"
-        },
-        "account_id": {
-          "type": "string"
-        },
-        "role": {
-          "$ref": "#/definitions/v1MemberRole"
-        }
-      }
-    },
-    "v1AddOrganisationMemberResponse": {
-      "type": "object"
-    },
     "v1CreateAccountRequest": {
       "type": "object",
       "properties": {
@@ -851,6 +498,9 @@
           "type": "string"
         },
         "password": {
+          "type": "string"
+        },
+        "role": {
           "type": "string"
         },
         "forename": {
@@ -865,36 +515,6 @@
       }
     },
     "v1CreateAccountResponse": {
-      "type": "object"
-    },
-    "v1CreateOrganisationRequest": {
-      "type": "object",
-      "properties": {
-        "organisation_id": {
-          "type": "string"
-        },
-        "administrator_id": {
-          "type": "string"
-        },
-        "label": {
-          "type": "string"
-        },
-        "phone_number": {
-          "type": "string",
-          "title": "Contact details"
-        },
-        "website": {
-          "type": "string"
-        },
-        "email_address": {
-          "type": "string"
-        },
-        "address": {
-          "$ref": "#/definitions/internalwktAddress"
-        }
-      }
-    },
-    "v1CreateOrganisationResponse": {
       "type": "object"
     },
     "v1DoResetPasswordRequest": {
@@ -930,14 +550,6 @@
         }
       }
     },
-    "v1GetOrganisationResponse": {
-      "type": "object",
-      "properties": {
-        "organisation": {
-          "$ref": "#/definitions/v1Organisation"
-        }
-      }
-    },
     "v1LoginRequest": {
       "type": "object",
       "properties": {
@@ -945,9 +557,6 @@
           "type": "string"
         },
         "password": {
-          "type": "string"
-        },
-        "organisation_id": {
           "type": "string"
         }
       }
@@ -971,66 +580,8 @@
           "type": "integer",
           "format": "int32"
         },
-        "organisation_id": {
+        "role": {
           "type": "string"
-        },
-        "organisation_role": {
-          "type": "string"
-        }
-      }
-    },
-    "v1MemberRole": {
-      "type": "string",
-      "enum": [
-        "administrator",
-        "offer",
-        "broker",
-        "introducer",
-        "customer",
-        "lender",
-        "service"
-      ],
-      "default": "administrator"
-    },
-    "v1Organisation": {
-      "type": "object",
-      "properties": {
-        "organisation_id": {
-          "type": "string"
-        },
-        "label": {
-          "type": "string"
-        },
-        "phone_number": {
-          "type": "string"
-        },
-        "website": {
-          "type": "string"
-        },
-        "email_address": {
-          "type": "string"
-        },
-        "address": {
-          "$ref": "#/definitions/internalwktAddress"
-        },
-        "active": {
-          "type": "boolean",
-          "format": "boolean"
-        },
-        "created": {
-          "type": "string",
-          "format": "date-time"
-        }
-      }
-    },
-    "v1QueryAccountMembershipsResponse": {
-      "type": "object",
-      "properties": {
-        "memberships": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/QueryAccountMembershipsResponseMap"
-          }
         }
       }
     },
@@ -1041,20 +592,6 @@
           "type": "array",
           "items": {
             "$ref": "#/definitions/v1Account"
-          }
-        },
-        "pagination": {
-          "$ref": "#/definitions/internalwktPaginationResponse"
-        }
-      }
-    },
-    "v1QueryOrganisationsResponse": {
-      "type": "object",
-      "properties": {
-        "organisations": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/v1Organisation"
           }
         },
         "pagination": {
@@ -1090,10 +627,7 @@
         "email_address": {
           "type": "string"
         },
-        "organisation_id": {
-          "type": "string"
-        },
-        "organisation_role": {
+        "role": {
           "type": "string"
         }
       }
@@ -1154,32 +688,6 @@
       }
     },
     "v1UpdateAccountPasswordResponse": {
-      "type": "object"
-    },
-    "v1UpdateOrganisationRequest": {
-      "type": "object",
-      "properties": {
-        "organisation_id": {
-          "type": "string"
-        },
-        "label": {
-          "type": "string"
-        },
-        "phone_number": {
-          "type": "string"
-        },
-        "website": {
-          "type": "string"
-        },
-        "email_address": {
-          "type": "string"
-        },
-        "address": {
-          "$ref": "#/definitions/internalwktAddress"
-        }
-      }
-    },
-    "v1UpdateOrganisationResponse": {
       "type": "object"
     }
   },

@@ -25,27 +25,15 @@ type Client struct {
 
 // ClientService is the interface for Client methods
 type ClientService interface {
-	IdentitiesAddOrganisationMember(params *IdentitiesAddOrganisationMemberParams, authInfo runtime.ClientAuthInfoWriter) (*IdentitiesAddOrganisationMemberOK, error)
-
 	IdentitiesCreateAccount(params *IdentitiesCreateAccountParams) (*IdentitiesCreateAccountOK, error)
-
-	IdentitiesCreateOrganisation(params *IdentitiesCreateOrganisationParams, authInfo runtime.ClientAuthInfoWriter) (*IdentitiesCreateOrganisationOK, error)
 
 	IdentitiesDoResetPassword(params *IdentitiesDoResetPasswordParams) (*IdentitiesDoResetPasswordOK, error)
 
 	IdentitiesGetAccount(params *IdentitiesGetAccountParams, authInfo runtime.ClientAuthInfoWriter) (*IdentitiesGetAccountOK, error)
 
-	IdentitiesGetOrganisation(params *IdentitiesGetOrganisationParams, authInfo runtime.ClientAuthInfoWriter) (*IdentitiesGetOrganisationOK, error)
-
 	IdentitiesLogin(params *IdentitiesLoginParams) (*IdentitiesLoginOK, error)
 
-	IdentitiesQueryAccountMemberships(params *IdentitiesQueryAccountMembershipsParams, authInfo runtime.ClientAuthInfoWriter) (*IdentitiesQueryAccountMembershipsOK, error)
-
 	IdentitiesQueryAccounts(params *IdentitiesQueryAccountsParams, authInfo runtime.ClientAuthInfoWriter) (*IdentitiesQueryAccountsOK, error)
-
-	IdentitiesQueryOrganisations(params *IdentitiesQueryOrganisationsParams, authInfo runtime.ClientAuthInfoWriter) (*IdentitiesQueryOrganisationsOK, error)
-
-	IdentitiesRemoveOrganisationMember(params *IdentitiesRemoveOrganisationMemberParams, authInfo runtime.ClientAuthInfoWriter) (*IdentitiesRemoveOrganisationMemberOK, error)
 
 	IdentitiesSendResetPassword(params *IdentitiesSendResetPasswordParams) (*IdentitiesSendResetPasswordOK, error)
 
@@ -57,43 +45,7 @@ type ClientService interface {
 
 	IdentitiesUpdateAccountPassword(params *IdentitiesUpdateAccountPasswordParams, authInfo runtime.ClientAuthInfoWriter) (*IdentitiesUpdateAccountPasswordOK, error)
 
-	IdentitiesUpdateOrganisation(params *IdentitiesUpdateOrganisationParams, authInfo runtime.ClientAuthInfoWriter) (*IdentitiesUpdateOrganisationOK, error)
-
 	SetTransport(transport runtime.ClientTransport)
-}
-
-/*
-  IdentitiesAddOrganisationMember identities add organisation member API
-*/
-func (a *Client) IdentitiesAddOrganisationMember(params *IdentitiesAddOrganisationMemberParams, authInfo runtime.ClientAuthInfoWriter) (*IdentitiesAddOrganisationMemberOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewIdentitiesAddOrganisationMemberParams()
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "Identities_AddOrganisationMember",
-		Method:             "POST",
-		PathPattern:        "/v1/organisations/{organisation_id}/members",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &IdentitiesAddOrganisationMemberReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*IdentitiesAddOrganisationMemberOK)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	unexpectedSuccess := result.(*IdentitiesAddOrganisationMemberDefault)
-	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
 }
 
 /*
@@ -126,40 +78,6 @@ func (a *Client) IdentitiesCreateAccount(params *IdentitiesCreateAccountParams) 
 	}
 	// unexpected success response
 	unexpectedSuccess := result.(*IdentitiesCreateAccountDefault)
-	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
-}
-
-/*
-  IdentitiesCreateOrganisation identities create organisation API
-*/
-func (a *Client) IdentitiesCreateOrganisation(params *IdentitiesCreateOrganisationParams, authInfo runtime.ClientAuthInfoWriter) (*IdentitiesCreateOrganisationOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewIdentitiesCreateOrganisationParams()
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "Identities_CreateOrganisation",
-		Method:             "POST",
-		PathPattern:        "/v1/organisations",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &IdentitiesCreateOrganisationReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*IdentitiesCreateOrganisationOK)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	unexpectedSuccess := result.(*IdentitiesCreateOrganisationDefault)
 	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
 }
 
@@ -231,40 +149,6 @@ func (a *Client) IdentitiesGetAccount(params *IdentitiesGetAccountParams, authIn
 }
 
 /*
-  IdentitiesGetOrganisation identities get organisation API
-*/
-func (a *Client) IdentitiesGetOrganisation(params *IdentitiesGetOrganisationParams, authInfo runtime.ClientAuthInfoWriter) (*IdentitiesGetOrganisationOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewIdentitiesGetOrganisationParams()
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "Identities_GetOrganisation",
-		Method:             "GET",
-		PathPattern:        "/v1/organisations/{organisation_id}",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &IdentitiesGetOrganisationReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*IdentitiesGetOrganisationOK)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	unexpectedSuccess := result.(*IdentitiesGetOrganisationDefault)
-	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
-}
-
-/*
   IdentitiesLogin identities login API
 */
 func (a *Client) IdentitiesLogin(params *IdentitiesLoginParams) (*IdentitiesLoginOK, error) {
@@ -294,40 +178,6 @@ func (a *Client) IdentitiesLogin(params *IdentitiesLoginParams) (*IdentitiesLogi
 	}
 	// unexpected success response
 	unexpectedSuccess := result.(*IdentitiesLoginDefault)
-	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
-}
-
-/*
-  IdentitiesQueryAccountMemberships identities query account memberships API
-*/
-func (a *Client) IdentitiesQueryAccountMemberships(params *IdentitiesQueryAccountMembershipsParams, authInfo runtime.ClientAuthInfoWriter) (*IdentitiesQueryAccountMembershipsOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewIdentitiesQueryAccountMembershipsParams()
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "Identities_QueryAccountMemberships",
-		Method:             "GET",
-		PathPattern:        "/v1/orgmemberships",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &IdentitiesQueryAccountMembershipsReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*IdentitiesQueryAccountMembershipsOK)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	unexpectedSuccess := result.(*IdentitiesQueryAccountMembershipsDefault)
 	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
 }
 
@@ -362,74 +212,6 @@ func (a *Client) IdentitiesQueryAccounts(params *IdentitiesQueryAccountsParams, 
 	}
 	// unexpected success response
 	unexpectedSuccess := result.(*IdentitiesQueryAccountsDefault)
-	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
-}
-
-/*
-  IdentitiesQueryOrganisations identities query organisations API
-*/
-func (a *Client) IdentitiesQueryOrganisations(params *IdentitiesQueryOrganisationsParams, authInfo runtime.ClientAuthInfoWriter) (*IdentitiesQueryOrganisationsOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewIdentitiesQueryOrganisationsParams()
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "Identities_QueryOrganisations",
-		Method:             "GET",
-		PathPattern:        "/v1/organisations",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &IdentitiesQueryOrganisationsReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*IdentitiesQueryOrganisationsOK)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	unexpectedSuccess := result.(*IdentitiesQueryOrganisationsDefault)
-	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
-}
-
-/*
-  IdentitiesRemoveOrganisationMember identities remove organisation member API
-*/
-func (a *Client) IdentitiesRemoveOrganisationMember(params *IdentitiesRemoveOrganisationMemberParams, authInfo runtime.ClientAuthInfoWriter) (*IdentitiesRemoveOrganisationMemberOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewIdentitiesRemoveOrganisationMemberParams()
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "Identities_RemoveOrganisationMember",
-		Method:             "DELETE",
-		PathPattern:        "/v1/organisations/{organisation_id}/members/{account_id}",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &IdentitiesRemoveOrganisationMemberReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*IdentitiesRemoveOrganisationMemberOK)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	unexpectedSuccess := result.(*IdentitiesRemoveOrganisationMemberDefault)
 	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
 }
 
@@ -597,40 +379,6 @@ func (a *Client) IdentitiesUpdateAccountPassword(params *IdentitiesUpdateAccount
 	}
 	// unexpected success response
 	unexpectedSuccess := result.(*IdentitiesUpdateAccountPasswordDefault)
-	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
-}
-
-/*
-  IdentitiesUpdateOrganisation identities update organisation API
-*/
-func (a *Client) IdentitiesUpdateOrganisation(params *IdentitiesUpdateOrganisationParams, authInfo runtime.ClientAuthInfoWriter) (*IdentitiesUpdateOrganisationOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewIdentitiesUpdateOrganisationParams()
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "Identities_UpdateOrganisation",
-		Method:             "POST",
-		PathPattern:        "/v1/organisations/{organisation_id}",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &IdentitiesUpdateOrganisationReader{formats: a.formats},
-		AuthInfo:           authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-	success, ok := result.(*IdentitiesUpdateOrganisationOK)
-	if ok {
-		return success, nil
-	}
-	// unexpected success response
-	unexpectedSuccess := result.(*IdentitiesUpdateOrganisationDefault)
 	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
 }
 

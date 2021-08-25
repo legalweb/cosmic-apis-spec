@@ -20,11 +20,8 @@ type V1TokenCheckResponse struct {
 	// email address
 	EmailAddress string `json:"email_address,omitempty"`
 
-	// organisation id
-	OrganisationID string `json:"organisation_id,omitempty"`
-
-	// organisation role
-	OrganisationRole string `json:"organisation_role,omitempty"`
+	// role
+	Role string `json:"role,omitempty"`
 }
 
 // Validate validates this v1 token check response

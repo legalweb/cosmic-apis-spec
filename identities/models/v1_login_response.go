@@ -23,14 +23,11 @@ type V1LoginResponse struct {
 	// expires
 	Expires int32 `json:"expires,omitempty"`
 
-	// organisation id
-	OrganisationID string `json:"organisation_id,omitempty"`
-
-	// organisation role
-	OrganisationRole string `json:"organisation_role,omitempty"`
-
 	// renew token
 	RenewToken string `json:"renew_token,omitempty"`
+
+	// role
+	Role string `json:"role,omitempty"`
 
 	// token
 	Token string `json:"token,omitempty"`

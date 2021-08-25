@@ -29,6 +29,9 @@ type V1CreateAccountRequest struct {
 	// phone number
 	PhoneNumber string `json:"phone_number,omitempty"`
 
+	// role
+	Role string `json:"role,omitempty"`
+
 	// surname
 	Surname string `json:"surname,omitempty"`
 }
